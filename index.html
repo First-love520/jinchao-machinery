@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>金超无缝机械有限公司 - 产品中心</title>
+  <style>
+    :root {
+      --blue: #2563eb;
+      --blue-dark: #0f172a;
+      --blue-mid: #1d4ed8;
+      --blue-soft: #eff6ff;
+      --blue-line: #e2e8f0;
+      --text: #1e293b;
+      --muted: #64748b;
+      --shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.1);
+      --wa-color: #25D366;
+      --tg-color: #0088cc;
+      --light-blue: #0ea5e9;
+      --yt-color: #ff0000;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: #f8fafc;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font-family: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+
+    /* --- 顶部工具栏 --- */
+    .topbar { background: var(--blue-dark); color: #f1f5f9; font-size: 13px; font-weight: 500; letter-spacing: 0.5px; }
+    .topbar-inner { min-height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; padding: 8px 0; }
+
+    /* --- 语言切换 --- */
+    .floating-lang-switch { position: absolute; right: 42px; top: 50%; transform: translateY(-50%); padding: 6px; border-radius: 999px; background: #f1f5f9; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); z-index: 120; display: flex; gap: 4px; }
+    .floating-lang-switch .lang-btn { border: 0; background: transparent; color: var(--muted); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 13px; cursor: pointer; transition: 0.3s; }
+    .floating-lang-switch .lang-btn.active { background: #ffffff; color: var(--blue); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* --- 导航栏 --- */
+    header { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--blue-line); }
+    .nav { min-height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .logo { display: flex; align-items: center; gap: 14px; flex: none; }
+    .logo-mark { width: 44px; height: 44px; border-radius: 14px; background: var(--blue); color: #ffffff; display: grid; place-items: center; font-size: 18px; font-weight: 900; box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2); }
+    .logo-title { font-size: 20px; font-weight: 900; color: var(--blue-dark); line-height: 1.2; letter-spacing: 1px; }
+    .logo-subtitle { margin-top: 2px; font-size: 12px; color: var(--muted); font-weight: 500;}
+
+    .menu { display: flex; align-items: center; gap: 32px; font-size: 15px; font-weight: 600; color: var(--text); }
+    .menu a { position: relative; padding: 28px 0; transition: color 0.3s;}
+    .menu a:hover { color: var(--blue); }
+    .menu a::after { content: ""; position: absolute; left: 0; bottom: 20px; width: 0; height: 3px; border-radius: 999px; background: var(--blue); transition: 0.3s; }
+    .menu a:hover::after { width: 100%; }
+
+    .nav-actions { display: flex; align-items: center; gap: 12px; flex: none; }
+
+    /* --- 按钮 --- */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 999px; padding: 12px 28px; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--blue); color: #ffffff; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2); }
+    .btn-primary:hover { background: var(--blue-mid); }
+    .btn-outline { background: #ffffff; color: var(--text); border: 1px solid var(--blue-line); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+    .btn-wa { background: var(--wa-color); color: white; }
+    .btn-tg { background: var(--tg-color); color: white; }
+    .btn-em { background: var(--blue); color: white; }
+    .btn-yt { background: var(--yt-color); color: white; border-radius: 8px;}
+    .btn-yt:hover { background: #cc0000; }
+
+    /* --- 巨幕 --- */
+    .hero { position: relative; background: #ffffff; padding: 96px 0 108px; overflow: hidden; }
+    .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: center; }
+    .tag { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px; padding: 8px 20px; border: 1px solid var(--blue-line); border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-size: 13px; font-weight: 800; }
+    .hero h1 { font-size: clamp(40px, 5vw, 56px); line-height: 1.15; color: var(--blue-dark); margin-bottom: 24px; font-weight: 900; }
+    .hero h1 span { color: var(--blue); }
+    .hero-desc { font-size: 17px; color: var(--muted); margin-bottom: 40px; line-height: 1.7; max-width: 600px;}
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 48px;}
+
+    .showcase-card { border-radius: 32px; background: #ffffff; padding: 12px; border: 1px solid var(--blue-line); box-shadow: var(--shadow); }
+    .showcase-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 24px; background: #f8fafc;}
+
+    /* --- 产品中心 --- */
+    section { padding: 96px 0; }
+    .section-head { max-width: 680px; margin: 0 auto 56px; text-align: center; }
+    .section-label { color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+    .section-head h2 { color: var(--blue-dark); font-size: clamp(32px, 4vw, 42px); margin-bottom: 16px; font-weight: 900;}
+    .section-head p { color: var(--muted); font-size: 16px; }
+
+    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .product-card { overflow: hidden; border-radius: 28px; border: 1px solid var(--blue-line); background: #ffffff; transition: 0.3s; display: flex; flex-direction: column; cursor: pointer; position: relative;}
+    .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: rgba(37,99,235,0.2);}
+    
+    .product-image { position: relative; aspect-ratio: 4/3; background: #f8fafc; border-bottom: 1px solid var(--blue-line); padding: 20px; display: grid; place-items: center; transition: 0.5s; overflow: hidden;}
+    .product-card:hover .product-image img { transform: scale(1.05); }
+    .product-image img { width: 100%; height: 100%; object-fit: contain; transition: 0.5s; }
+    
+    /* 视频播放小标签/图标样式 */
+    .play-icon-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 56px; height: 56px; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); border-radius: 50%; display: grid; place-items: center; color: white; opacity: 0.85; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 10; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .play-icon-badge svg { width: 26px; height: 26px; fill: currentColor; margin-left: 4px; }
+    .product-card:hover .play-icon-badge { background: var(--yt-color); transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+
+    .product-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
+    .product-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .badge { padding: 6px 12px; border-radius: 8px; background: var(--blue-soft); color: var(--blue); font-size: 12px; font-weight: 800; }
+    .code { color: var(--muted); font-size: 13px; font-weight: 700; }
+    .product-card h3 { color: var(--blue-dark); font-size: 18px; font-weight: 800; margin-bottom: 12px; line-height: 1.4;}
+    .product-card p { color: var(--muted); font-size: 14px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 24px; flex: 1;}
+    .product-actions { display: flex; gap: 12px; }
+
+    .small-btn { flex: 1; border: 0; border-radius: 12px; padding: 12px 0; font-weight: 800; font-size: 14px; cursor: pointer; transition: 0.3s; }
+    .small-btn.detail { background: var(--blue); color: #ffffff; }
+    .small-btn.detail:hover { background: var(--blue-mid); }
+
+    .product-toolbar { display: flex; gap: 20px; align-items: center; margin-bottom: 32px; padding: 12px; border-radius: 20px; background: #ffffff; border: 1px solid var(--blue-line); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+    .search-box { flex: 1; display: flex; align-items: center; gap: 12px; padding: 0 20px; height: 48px; }
+    .search-box svg { width: 22px; height: 22px; fill: var(--light-blue); } 
+    .search-box input { flex: 1; border: 0; outline: none; font-size: 15px; color: var(--text); background: transparent;}
+    .search-box input::placeholder { color: #94a3b8; }
+    .category-tabs { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; justify-content: center;}
+    .tab-btn { border: 1px solid var(--blue-line); background: #ffffff; color: var(--muted); padding: 10px 22px; border-radius: 999px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+    .tab-btn.active, .tab-btn:hover { color: var(--blue); border-color: var(--blue); background: var(--blue-soft); }
+
+    /* --- 联系模块 --- */
+    .contact { background: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%); }
+    .contact-box { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .contact-card { background: #ffffff; padding: 40px; border-radius: 32px; box-shadow: 0 24px 60px -10px rgba(0,0,0,0.08); position: relative;}
+    .contact-card::before { content: ''; position: absolute; inset: -1px; border-radius: 33px; z-index: -1; background: linear-gradient(135deg, rgba(37,99,235,0.2) 0%, transparent 100%); }
+    .contact-row { display: flex; align-items: center; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--blue-line); transition: 0.3s; }
+    .contact-row:hover { transform: translateX(8px); }
+    .contact-icon { width: 52px; height: 52px; flex: none; display: grid; place-items: center; border-radius: 16px; background: var(--blue-soft); color: var(--blue); }
+    .contact-icon svg { width: 24px; height: 24px; fill: currentColor; }
+    .contact-row-text strong { display: block; color: var(--blue-dark); font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+    .contact-row-text span { color: var(--muted); font-size: 14px; display: block; margin-top: 2px;}
+    .contact-action-group { display: flex; gap: 12px; margin-top: 32px; padding-top: 12px;}
+    .contact-action-group .btn { flex: 1; padding: 14px 0; font-size: 14px; border-radius: 14px; }
+
+    /* --- 弹窗及 YouTube 视频集成 --- */
+    .modal { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); }
+    .modal.show { display: flex; }
+    
+    .modal-card { 
+      width: min(1180px, 95vw); 
+      height: 90vh; 
+      display: flex; 
+      flex-direction: column; 
+      overflow: hidden; 
+      border-radius: 32px; 
+      background: #ffffff; 
+      box-shadow: 0 32px 96px rgba(0,0,0,0.3); 
+      animation: pop 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    }
+    
+    .modal-head { 
+      flex: none;
+      display: flex; justify-content: space-between; align-items: center; 
+      padding: 24px 32px; border-bottom: 1px solid var(--blue-line); 
+      background: #fff; z-index: 10;
+    }
+    .modal-head h3 { font-size: 22px; font-weight: 900; color: var(--blue-dark); line-height: 1.2; }
+    
+    .close-btn { width: 40px; height: 40px; flex: none; border: 0; border-radius: 50%; background: var(--blue-soft); color: var(--blue); cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+    .close-btn:hover { background: var(--blue-line); }
+    .close-btn svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+
+    .modal-content { 
+      display: grid; 
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); 
+      gap: 40px; padding: 40px; 
+      height: 100%;
+      overflow: hidden; 
+    }
+    
+    .modal-left { display: flex; flex-direction: column; gap: 24px; }
+    .modal-image { border-radius: 24px; background: #f8fafc; border: 1px solid var(--blue-line); padding: 20px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;}
+    .modal-image img { width: 100%; height: 100%; object-fit: contain; }
+    
+    /* 移除视频模式下的边框和内边距，让视频填满 */
+    .modal-image.is-video { background: #000; padding: 0; border: none; border-radius: 24px; aspect-ratio: 16/9;}
+    .video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .video-wrapper iframe { width: 100%; height: 100%; border: 0; }
+
+    .modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .modal-actions .btn { font-size: 14px; padding: 12px 0; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+    .modal-actions .btn svg { width: 18px; height: 18px; fill: currentColor; flex: none; }
+
+    .modal-right { 
+      overflow-y: auto; 
+      padding-right: 16px; 
+      padding-bottom: 40px; 
+    }
+    .modal-right::-webkit-scrollbar { width: 6px; }
+    .modal-right::-webkit-scrollbar-track { background: transparent; }
+    .modal-right::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    .modal-right::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    .detail-copy { color: var(--muted); margin-top: 16px; line-height: 1.7;}
+    
+    .specs-section { margin-top: 32px; }
+    .specs-section h4 { color: var(--blue-dark); font-size: 16px; font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .specs-section h4::before { content: ""; display: block; width: 4px; height: 16px; background: var(--blue); border-radius: 4px; }
+
+    .features-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .features-list li { position: relative; padding-left: 20px; color: var(--text); font-size: 14px; line-height: 1.6; }
+    .features-list li::before { content: "•"; position: absolute; left: 4px; color: var(--blue); font-weight: 900; font-size: 18px; line-height: 1; top: 0px;}
+
+    .specs-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .specs-table th, .specs-table td { padding: 12px 0; border-bottom: 1px solid var(--blue-line); text-align: left; vertical-align: top;}
+    .specs-table th { color: var(--muted); font-weight: 500; width: 35%; padding-right: 16px;}
+    .specs-table td { color: var(--blue-dark); font-weight: 700; word-break: break-word;}
+
+    @keyframes pop { from { transform: translateY(24px) scale(0.96); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+
+    footer { padding: 32px 0; text-align: center; color: var(--muted); font-size: 13px; border-top: 1px solid var(--blue-line); background: #fff;}
+
+    /* --- 波浪呼吸灯特效 --- */
+    @keyframes pulse-wa { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 211, 102, 0); } }
+    @keyframes pulse-tg { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(0, 136, 204, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(0, 136, 204, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(0, 136, 204, 0); } }
+    @keyframes pulse-em { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 99, 235, 0); } }
+
+    .fab-container { position: fixed; right: 32px; bottom: 32px; display: flex; flex-direction: column; gap: 16px; z-index: 999; }
+    .fab { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: white; transition: 0.3s; }
+    .fab svg { width: 28px; height: 28px; fill: white;}
+    .fab.wa { background: var(--wa-color); animation: pulse-wa 2s infinite; }
+    .fab.tg { background: var(--tg-color); animation: pulse-tg 2s infinite; animation-delay: 0.6s; }
+    .fab.em { background: var(--blue); animation: pulse-em 2s infinite; animation-delay: 1.2s; }
+    .fab:hover { transform: scale(1.1) translateY(-4px); animation-play-state: paused; }
+
+    .giant-brand-footer { width: 100%; height: 45vw; background: var(--blue); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; cursor: crosshair; }
+    .giant-text { font-size: 45vw; font-weight: 900; color: var(--blue-dark); line-height: 0.8; letter-spacing: -1vw; text-transform: uppercase; user-select: none; white-space: nowrap; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); margin: 0; padding: 0; }
+    .giant-text.base-text { opacity: 1; transition: opacity 0.3s; }
+    .giant-brand-footer.is-hovering .giant-text.base-text { opacity: 0.2; }
+    .giant-text.slice { will-change: transform; }
+
+    @media (max-width: 980px) {
+      .menu { display: none; }
+      .hero-grid, .contact-box { grid-template-columns: 1fr; gap: 40px;}
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-toolbar { flex-direction: column; align-items: stretch; }
+      .modal-content { grid-template-columns: 1fr; overflow-y: auto; height: auto; }
+      .modal-right { overflow-y: visible; padding-right: 0; padding-bottom: 0;}
+      .giant-brand-footer { height: 60vw; }
+      .giant-text { font-size: 60vw; }
+    }
+    @media (max-width: 640px) {
+      .nav { padding: 16px 0; align-items: flex-start; flex-direction: column; }
+      .nav-actions { width: 100%; justify-content: space-between; }
+      .hero { padding: 60px 0; }
+      .product-grid { grid-template-columns: 1fr; }
+      .contact-box, .modal-content { padding: 24px; gap: 32px;}
+      .modal-actions { grid-template-columns: minmax(0, 1fr); } 
+      .fab-container { right: 20px; bottom: 20px; }
+      .fab { width: 48px; height: 48px; }
+      .fab svg { width: 22px; height: 22px; }
+      .giant-brand-footer { height: 80vw; }
+      .giant-text { font-size: 80vw; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home">
+        <div class="logo-mark">JC</div>
+        <div>
+          <div class="logo-title" data-i18n="company">金超无缝机械有限公司</div>
+          <div class="logo-subtitle">Jinchao Seamless Machinery</div>
+        </div>
+      </a>
+      <nav class="menu">
+        <a href="#home" data-i18n="navHome">首页</a>
+        <a href="#featured" data-i18n="navFeatured">精选设备</a>
+        <a href="#products" data-i18n="navProducts">产品展示</a>
+        <a href="#contact" data-i18n="navContact">联系我们</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-primary" href="#contact" data-i18n="quote">获取报价</a>
+      </div>
+    </div>
+    <div class="floating-lang-switch">
+      <button class="lang-btn" id="langZh" onclick="setLanguage('zh', true)">中</button>
+      <button class="lang-btn" id="langEn" onclick="setLanguage('en', true)">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="tag" data-i18n="heroTag">● 专业制造 · 分类呈现 · 全球出海</div>
+          <h1 data-i18n="heroTitle">专业无缝机械设备<br><span>与热压加工解决方案</span></h1>
+          <p class="hero-desc" data-i18n="heroDesc">专注各类热压机、点胶机、折叠包装机及无缝设备，为海外工厂提供可靠的机械产品与定制投产方案。</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#products" data-i18n="viewProducts">浏览设备目录</a>
+            <a class="btn btn-outline js-telegram" href="#" target="_blank" data-i18n="contactSolution">获取定制方案</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric"><strong data-i18n="metricProducts">28+</strong><span data-i18n="metricProductsText">款设备在售</span></div>
+            <div class="metric"><strong data-i18n="metricCategories">7大</strong><span data-i18n="metricCategoriesText">工艺分类</span></div>
+          </div>
+        </div>
+        <div class="showcase-card">
+          <img src="images/722s-visual-glue-machine.jpg" alt="Featured">
+          <div class="showcase-caption">
+            <div>
+              <h2 data-i18n="showcaseTitle">工业级标准设备</h2>
+              <p data-i18n="showcaseDesc">支持多电压定制，适应海外工厂要求</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="featured" style="background: #f8fafc;">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label" data-i18n="featuredLabel">Featured Products</div>
+          <h2 data-i18n="featuredTitle">精选主打设备</h2>
+          <p data-i18n="featuredDesc">高销量出口机型，性能稳定，操作简便，备受海内外采购商信赖。</p>
+        </div>
+        <div id="featuredGrid" class="product-grid"></div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label" data-i18n="productsLabel">Product Center</div>
+          <h2 data-i18n="productsTitle">完整产品目录</h2>
+          <p data-i18n="productsDesc">您可以通过关键词搜索或工艺分类，快速查找适合您工厂的无缝加工设备。</p>
+        </div>
+        <div class="product-toolbar">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            <input id="searchInput" type="text" data-placeholder-i18n="searchPlaceholder" placeholder="搜索型号或关键词，如：350、点胶机、热压" />
+          </div>
+          <button id="searchBtn" class="btn btn-primary" data-i18n="searchBtn">搜索</button>
+        </div>
+        <div id="categoryTabs" class="category-tabs"></div>
+        <div id="productGrid" class="product-grid"></div>
+        <div id="emptyState" class="empty-state" data-i18n="empty">没有找到匹配的设备，请尝试其他关键词。</div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container contact-box">
+        <div class="contact-text">
+          <div class="section-label" data-i18n="contactLabel">CONTACT & INQUIRY</div>
+          <h2 data-i18n="contactTitle">欢迎咨询参数与获取报价</h2>
+          <p data-i18n="contactDesc">无论您是对单台设备感兴趣，还是需要整厂出海方案，请通过下方方式直接与我们的销售工程师取得联系。我们支持全英文对接与视频验厂。</p>
+        </div>
+        <div class="contact-card">
+          <a class="contact-row" href="tel:+8617376159927">
+            <div class="contact-icon" style="color: var(--blue); background: var(--blue-soft);">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </div>
+            <div class="contact-row-text">
+              <strong data-i18n="phone">联系电话</strong>
+              <span>+86 173 7615 9927</span>
+              <span>+86 133 4268 8022</span>
+            </div>
+          </a>
+
+          <a class="contact-row js-whatsapp" href="#" target="_blank">
+            <div class="contact-icon" style="color:var(--wa-color); background: #dcf8c6;">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div class="contact-row-text">
+              <strong data-i18n="whatsapp">WhatsApp 极速响应</strong>
+              <span>+86 173 7615 9927</span>
+            </div>
+          </a>
+
+          <a class="contact-row js-telegram" href="#" target="_blank">
+            <div class="contact-icon" style="color:var(--tg-color); background: #cce7f5;">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.548.223l.188-2.85 5.18-4.686c.223-.195-.054-.285-.346-.094L7.466 14.1l-2.76-.856c-.6-.183-.61-.594.126-.884l10.79-4.16c.5-.183.945.105.812.87z"/></svg>
+            </div>
+            <div class="contact-row-text">
+              <strong data-i18n="telegram">Telegram 在线支持</strong>
+              <span>@Lucky_Xing216</span>
+            </div>
+          </a>
+
+          <a class="contact-row js-email" href="#">
+            <div class="contact-icon" style="color: var(--blue); background: var(--blue-soft);">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div class="contact-row-text">
+              <strong data-i18n="email">官方电子邮件</strong>
+              <span>flechazo216@gmail.com</span>
+            </div>
+          </a>
+          
+          <div class="contact-action-group">
+            <a class="btn btn-wa js-whatsapp" href="#" target="_blank" data-i18n="contactWa">WhatsApp 沟通</a>
+            <a class="btn btn-tg js-telegram" href="#" target="_blank" data-i18n="contactTg">Telegram 沟通</a>
+            <a class="btn btn-em js-email" href="#" data-i18n="contactEm">发送邮件</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer data-i18n="footer">© 2026 金超无缝机械有限公司. All Rights Reserved.</footer>
+
+  <div id="productModal" class="modal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modalTitle">产品详情</h3>
+        <button class="close-btn" onclick="closeModal()">
+          <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-content">
+        <div class="modal-left">
+          <div id="modalImage" class="modal-image"></div>
+          
+          <!-- YouTube 按钮容器 (仅视频存在时显示) -->
+          <div id="modalYtContainer" style="display:none; text-align: right; margin-top: -12px; margin-bottom: 8px;">
+            <a id="modalYoutubeBtn" href="#" target="_blank" class="btn btn-yt" style="display: inline-flex; width: auto; padding: 8px 16px; font-size: 13px;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-right: 4px;"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+              <span data-i18n="watchYoutube">在 YouTube 上观看</span>
+            </a>
+          </div>
+
+          <div class="modal-actions">
+            <a href="tel:+8617376159927" class="btn btn-outline">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              <span data-i18n="modalPhone">电话联系</span>
+            </a>
+            <button class="btn btn-wa js-modal-wa">WhatsApp</button>
+            <button class="btn btn-tg js-modal-tg">Telegram</button>
+            <button class="btn btn-em js-modal-em">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span data-i18n="modalEmail">邮件联系</span>
+            </button>
+          </div>
+        </div>
+        <div class="modal-right">
+          <span id="modalCategory" class="badge">分类</span>
+          <p id="modalDesc" class="detail-copy"></p>
+          <div class="specs-section">
+            <h4 data-i18n="modalFeaturesTitle">机器特性 / Features</h4>
+            <ul id="modalFeatures" class="features-list"></ul>
+          </div>
+          <div class="specs-section">
+            <h4 data-i18n="modalSpecsTitle">技术参数 / Specifications</h4>
+            <table class="specs-table">
+              <tbody id="modalSpecs"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fab-container">
+    <a href="#" target="_blank" class="fab wa js-whatsapp" title="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+    <a href="#" target="_blank" class="fab tg js-telegram" title="Telegram">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.548.223l.188-2.85 5.18-4.686c.223-.195-.054-.285-.346-.094L7.466 14.1l-2.76-.856c-.6-.183-.61-.594.126-.884l10.79-4.16c.5-.183.945.105.812.87z"/></svg>
+    </a>
+    <a href="#" class="fab em js-email" title="Email">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    </a>
+  </div>
+
+  <div class="giant-brand-footer" id="glitchFooter">
+    <div class="giant-text base-text">JC</div>
+  </div>
+
+  <script>
+    const CONTACT = { whatsappNumber: "8617376159927", telegramPhone: "8617376159927", telegramUser: "Lucky_Xing216" };
+
+    const UI = {
+      "zh": {
+        "topbarLeft": "欢迎访问金超无缝机械有限公司官方网站", "topbarRight": "专注无缝设备 · 热压贴胶 · 点胶复合 · 定制服务",
+        "navHome": "首页", "navFeatured": "精选设备", "navProducts": "产品展示", "navContact": "联系我们",
+        "quote": "获取报价", "company": "金超无缝机械有限公司",
+        "heroTag": "● 工业制造 · 性能稳定 · 出海支持", "heroTitle": "专业无缝机械设备<br><span>与热压加工解决方案</span>", "heroDesc": "专注各类热压机、点胶机、折叠包装机及无缝设备，为海外工厂提供可靠的机械产品与定制投产方案。",
+        "viewProducts": "浏览设备目录", "contactSolution": "获取定制方案",
+        "metricProducts": "28+", "metricProductsText": "款设备在售", "metricCategories": "7大", "metricCategoriesText": "工艺分类",
+        "showcaseTitle": "工业级标准设备", "showcaseDesc": "支持多电压定制，适应海外工厂要求",
+        "featuredLabel": "Featured Machines", "featuredTitle": "精选主打设备", "featuredDesc": "高销量出口机型，性能稳定，操作简便，备受海内外采购商信赖。",
+        "productsLabel": "Equipment Center", "productsTitle": "完整产品目录", "productsDesc": "您可以通过关键词搜索或工艺分类，快速查找适合您工厂的无缝加工设备。",
+        "searchPlaceholder": "搜索型号或关键词，如：350、点胶机、热压", "searchBtn": "搜索", "detail": "查看参数", "empty": "未找到相关设备，请尝试其他关键词。",
+        "contactLabel": "Contact Us", "contactTitle": "欢迎咨询参数与获取报价", "contactDesc": "无论您是对单台设备感兴趣，还是需要整厂出海方案，请通过下方方式直接与我们的销售工程师取得联系。我们支持全英文对接与视频验厂。",
+        "phone": "联系电话", "whatsapp": "WhatsApp 极速响应", "telegram": "Telegram 在线支持", "email": "官方电子邮件",
+        "contactWa": "WhatsApp 沟通", "contactTg": "Telegram 沟通", "contactEm": "发送邮件",
+        "modalFeaturesTitle": "机器特性", "modalSpecsTitle": "技术参数",
+        "modalPhone": "电话联系", "modalEmail": "发送邮件",
+        "watchYoutube": "在 YouTube 上观看",
+        "defaultMsg": "您好，我想详细了解这款机器...",
+        "productMsgPrefix": "您好，我想详细了解这款",
+        "productMsgSuffix": "机器...",
+        "noFeatures": "暂无特殊说明", "noSpecs": "暂无详细技术参数"
+      },
+      "en": {
+        "topbarLeft": "Welcome to Jinchao Seamless Machinery Co., Ltd.", "topbarRight": "Heat Press · Glue Dispensing · Custom Solutions",
+        "navHome": "Home", "navFeatured": "Featured", "navProducts": "Machines", "navContact": "Contact",
+        "quote": "Get Quote", "company": "Jinchao Seamless Machinery Co., Ltd.",
+        "heroTag": "● Industrial Grade · Stable Performance · Global Export", "heroTitle": "Professional Seamless Machinery<br><span>& Heat Press Solutions</span>", "heroDesc": "We specialize in heat press, glue dispensing, and folding packaging machines for garment and footwear factories worldwide.",
+        "viewProducts": "View Catalog", "contactSolution": "Custom Solutions",
+        "metricProducts": "28+", "metricProductsText": "Machine Models", "metricCategories": "7", "metricCategoriesText": "Process Types",
+        "showcaseTitle": "Industrial Standards", "showcaseDesc": "Multi-voltage customization for global factories",
+        "featuredLabel": "Featured Machines", "featuredTitle": "Top Export Models", "featuredDesc": "Highly reliable and easy-to-operate machines trusted by global buyers.",
+        "productsLabel": "Equipment Center", "productsTitle": "Complete Catalog", "productsDesc": "Search by keyword or filter by category to find the right machine for your production line.",
+        "searchPlaceholder": "Search model or keyword, e.g., 350, Dispenser", "searchBtn": "Search", "detail": "Parameters", "empty": "No machines found. Please try another keyword.",
+        "contactLabel": "Contact Us", "contactTitle": "Get Specifications & Quotes", "contactDesc": "Whether you need a single machine or a complete factory setup, please contact our sales engineers directly. We support English communication and video factory tours.",
+        "phone": "Phone Numbers", "whatsapp": "WhatsApp (Fast Reply)", "telegram": "Telegram Support", "email": "Official Email",
+        "contactWa": "WhatsApp Chat", "contactTg": "Telegram Chat", "contactEm": "Send Email",
+        "modalFeaturesTitle": "Machine Features", "modalSpecsTitle": "Technical Specifications",
+        "modalPhone": "Call Us", "modalEmail": "Send Email",
+        "watchYoutube": "Watch on YouTube",
+        "defaultMsg": "Hello, I would like to know more about your machines...",
+        "productMsgPrefix": "Hello, I would like to know more about the ",
+        "productMsgSuffix": " machine...",
+        "noFeatures": "No special description available.", "noSpecs": "No detailed specifications available."
+      }
+    };
+
+    const categories = [{"key": "all", "zh": "全部设备", "en": "All Machines"}, {"key": "hotPress", "zh": "热压机系列", "en": "Heat Press"}, {"key": "glueDispensing", "zh": "点胶机系列", "en": "Glue Dispenser"}, {"key": "heatSealing", "zh": "热风贴胶系列", "en": "Hot Air Taping"}, {"key": "binding", "zh": "包边套贴系列", "en": "Binding & Folding"}, {"key": "brushing", "zh": "刷胶复合系列", "en": "Glue Brushing"}, {"key": "splicing", "zh": "驳接补胶系列", "en": "Splicing"}, {"key": "waistband", "zh": "腰头设备系列", "en": "Waistband"}];
+    
+    // 增加了一个真实的 JC-722S 视频以作演示 
+    const products = [
+      { 
+        "id": 1, "code": "JC-350", "nameZh": "JC-350 侧缝双工位热压机", "nameEn": "JC-350 Double-Station Heat Press", "category": "hotPress", 
+        "image": "images/350-side-seam-machine.jpg",
+        "descZh": "独立长臂设计，脚踏式操作，专攻侧骨与拼贴的高效双工位热压机。", 
+        "descEn": "Independent long arm design, pedal operation, specialized for side bone and collage.",
+        "featuresZh": ["独立长臂设计，完美契合侧骨与拼贴工艺（侧骨机/贴骨机）", "脚踏式可选张力装置，解放双手操作更高效", "上下加热系统独立控温：上板1000W*2块，下条500W*4条", "高效率双工位设计，最大加压时间可达99小时/分/秒"],
+        "featuresEn": ["Independent long arm design, perfectly suited for side bone and collage processes", "Optional pedal-type tensioning device frees hands for more efficient operation", "Independent temperature control for upper and lower heating systems (Upper plate: 1000W*2, Lower strip: 500W*4)", "High-efficiency double-station design, max pressure time up to 99h/m/s"],
+        "specsZh": { "加热板尺寸": "上200*400mm / 下50*400mm", "功率与电压": "2500W / AC 220V", "工作气压": "2-10 Mpa", "最高温度": "250°C", "机器尺寸": "120*80*165cm", "机器重量": "160kg" },
+        "specsEn": { "Heating Plate Size": "Top 200*400mm / Bottom 50*400mm", "Power & Voltage": "2500W / AC 220V", "Air Pressure": "2-10 Mpa", "Max Temp": "250°C", "Dimensions": "120*80*165cm", "Weight": "160kg" }
+      },
+      { 
+        "id": 2, "code": "JC-722", "nameZh": "JC-722 自动点胶机", "nameEn": "JC-722 Automatic Dispenser", "category": "glueDispensing", 
+        "image": "images/722-automatic-dispenser-machine.jpg",
+        "descZh": "全自动点胶作业，大理石台面支持微调水平，设独立增压泵出胶极稳。", 
+        "descEn": "Fully automatic dispensing, marble table top, independent booster pump for stable gluing.",
+        "featuresZh": ["设有独立增压泵，保证出胶极其稳定", "料阀气压分别独立调节，控制精准", "料桶阀座温度可独立调节", "工作台面为大理石材质，且可微调水平"],
+        "featuresEn": ["Independent booster pump ensures extremely stable gluing", "Material valve air pressure is adjusted separately for precise control", "Barrel and valve seat temperature can be adjusted independently", "Marble worktable top, horizontal level can be fine-tuned"],
+        "specsZh": { "加工速度": "13000点/分钟", "点胶精度": "±0.03mm", "气动元件": "SMC+亚德客", "整机尺寸": "1840*1360*1250mm", "输入电压": "220VAC/50Hz", "机器重量": "660kg / 790kg" },
+        "specsEn": { "Processing Speed": "13000 points/min", "Dispensing Accuracy": "±0.03mm", "Pneumatic Components": "SMC+AirTAC", "Dimensions": "1840*1360*1250mm", "Input Voltage": "220VAC/50Hz", "Weight": "660kg / 790kg" }
+      },
+      { 
+        "id": 3, "code": "JC-722S", "nameZh": "JC-722S 视觉点胶机", "nameEn": "JC-722S Vision Glue Dispenser", "category": "glueDispensing", 
+        "image": "images/722s-visual-glue-machine.jpg",
+        "youtubeId": "tKUm3IKd9Pk", /* <-- 真实的 YouTube 视频 ID 演示 */
+        "descZh": "高清双摄像头视觉定位，支持 PUR 胶水点胶，杜绝拉丝现象。", 
+        "descEn": "Dual camera vision positioning, supports PUR glue, prevents stringing.",
+        "featuresZh": ["搭载高清双摄像头与高均度背光源，视觉定位极速精准", "支持 PUR 胶水及热熔胶点胶，点胶路径平滑顺畅", "料阀气压分别独立调节，杜绝拉丝现象", "有效行程：1080*700*2 (双工位)"],
+        "featuresEn": ["Dual HD cameras and high-uniformity backlight for fast and precise vision positioning", "Supports PUR and hot melt glue, smooth dispensing path", "Material valve air pressure is adjusted independently to prevent glue stringing", "Effective stroke: 1080*700*2 (Double station)"],
+        "specsZh": { "设备工位": "双工位", "最大功率": "2500W", "空气压力": ">=0.6Mpa", "整机尺寸": "210*145*195cm", "净重/毛重": "900kg / 1100kg" },
+        "specsEn": { "Station": "Double Station", "Max Power": "2500W", "Air Pressure": ">=0.6Mpa", "Dimensions": "210*145*195cm", "Weight": "900kg / 1100kg" }
+      },
+      { 
+        "id": 4, "code": "JC-733", "nameZh": "JC-733 果冻点胶机", "nameEn": "JC-733 Jelly Glue Dispenser", "category": "glueDispensing", 
+        "image": "images/733-jelly-glue-dispenser-machine.jpg",
+        "descZh": "专研果冻胶点打系统，设有独立增压泵，大理石台面可调水平。", 
+        "descEn": "Specialized jelly glue system, independent booster pump, adjustable marble table.",
+        "featuresZh": ["专研系统：可完美点打果冻胶", "设有独立增压泵，出胶流畅均匀", "料桶阀座温度可独立调节，保持胶水最佳活性", "大理石工作台面可微调水平"],
+        "featuresEn": ["Specialized system perfectly designed for dispensing jelly glue", "Independent booster pump for smooth and uniform glue output", "Independent temp control for barrel/valve seat to maintain optimal glue activity", "Marble worktable top with fine-tuning for horizontal leveling"],
+        "specsZh": { "加工速度": "13000点/分钟", "点胶精度": "±0.03mm", "工作范围": "1100*800*50mm", "运行功率": "1.6kW", "设备重量": "300kg" },
+        "specsEn": { "Processing Speed": "13000 points/min", "Dispensing Accuracy": "±0.03mm", "Working Range": "1100*800*50mm", "Power": "1.6kW", "Weight": "300kg" }
+      },
+      { 
+        "id": 5, "code": "JC-900", "nameZh": "JC-900 滚筒机", "nameEn": "JC-900 Fusing Machine", "category": "hotPress", 
+        "image": "images/900-fusing-machine.jpg",
+        "descZh": "过胶轴压胶，轴压效果极佳，广泛用于鞋材、皮具、电子胶套贴合。", 
+        "descEn": "Roller heating and pressing for high-speed laminating of shoes, leather, and electronics.",
+        "featuresZh": ["过胶轴压胶，胶带平稳输送，轴压定型效果极好", "适用于无缝制衣、鞋材、皮具、PU 等材质的高强度上胶贴合", "支持电子产品胶套的上胶贴合加工", "温度设定：0~200°C"],
+        "featuresEn": ["Roller glue pressing, stable tape conveying, excellent shaping effect", "Suitable for high-strength glue lamination of seamless garments, shoe materials, leather, PU, etc.", "Supports lamination for electronic product rubber sleeves", "Temperature range: 0~200°C"],
+        "specsZh": { "贴合宽度": "900mm", "工作速度": "14m/min", "电热功率": "26kW", "电压规格": "380V/50HZ", "机器重量": "800kg" },
+        "specsEn": { "Laminating Width": "900mm", "Working Speed": "14m/min", "Heating Power": "26kW", "Voltage": "380V/50HZ", "Weight": "800kg" }
+      },
+      { 
+        "id": 6, "code": "JC-6080", "nameZh": "JC-6080 精密型双工位热压机", "nameEn": "JC-6080 Precise Flat Press", "category": "hotPress", 
+        "image": "images/6080-flat-press-machine.jpg",
+        "descZh": "配备双工位移动工作台，上下温度独立可调，弹簧自动平衡压力。", 
+        "descEn": "Double-station mobile table, independent temp control, automatic pressure balance.",
+        "featuresZh": ["上下温度、时间独立可调整，自动恒温更精准（常温-300℃）", "双工位移动工作台，操作员交替作业，生产效率极高", "弹簧自动调整平衡机构，确保大面积压烫压力平均", "常用于压衣服、底边胶等高强度精密压烫工艺"],
+        "featuresEn": ["Independent temp/time adjustment for upper and lower plates (Room temp to 300°C)", "Double-station mobile table for alternating operation, extremely high efficiency", "Spring automatic balance adjustment ensures even pressure over large areas", "Commonly used for high-strength precise pressing like garments and bottom edge glue"],
+        "specsZh": { "加热板尺寸": "600*800mm", "加热板功率": "6200W", "电压/气压": "220V/380V / 2-10mpa", "包装尺寸": "1800*1050*1500mm", "机器重量": "380kg" },
+        "specsEn": { "Heating Plate Size": "600*800mm", "Heating Power": "6200W", "Voltage/Air": "220V/380V / 2-10mpa", "Dimensions": "1800*1050*1500mm", "Weight": "380kg" }
+      },
+      { 
+        "id": 7, "code": "JC-6815", "nameZh": "JC-6815 包边机", "nameEn": "JC-6815 Binding Machine", "category": "binding", 
+        "image": "images/6815-binding-machine.jpg",
+        "descZh": "专攻 U 型包边及弹性高温布料处理，完美适配 Bemis 进口胶膜。", 
+        "descEn": "Specialized for U-shaped binding, compatible with imported Bemis films.",
+        "featuresZh": ["专攻 U 型包边 及弹性(高温)布料边缘处理", "完美适配美国 Bemis 等进口高阶包边胶膜", "上下皮带分开独立调节速度和温度", "皮带压力可自由调节，适应不同厚度面料"],
+        "featuresEn": ["Specialized in U-shaped binding and elastic (high-temp) fabric edge processing", "Perfectly compatible with imported high-end binding films like Bemis", "Upper and lower belts have independent speed and temperature controls", "Adjustable belt pressure to accommodate fabrics of varying thicknesses"],
+        "specsZh": { "运行速度": "0-150mm/秒", "压脚方式": "气缸驱动式", "最大功率": "2500W", "净重/毛重": "100kg / 160kg" },
+        "specsEn": { "Running Speed": "0-150mm/s", "Presser Foot": "Cylinder driven", "Max Power": "2500W", "Weight": "100kg / 160kg" }
+      },
+      { 
+        "id": 8, "code": "JC-6815J", "nameZh": "JC-6815J 高速包边机", "nameEn": "JC-6815J High-Speed Binding Machine", "category": "binding", 
+        "image": "images/6815j-binding-machine.jpg",
+        "descZh": "支持 U 型包边与立体包胸折边，包胸控制筒规格可选 0.6/0.8。", 
+        "descEn": "Supports U-shaped and 3D chest binding, interchangeable cylinders (0.6/0.8).",
+        "featuresZh": ["支持 U 型包边 与 立体包胸折边 加工", "包胸控制筒可自由更换（支持 0.6、0.8 规格）", "成品包边宽度可达 12mm", "完美支持贴条、贴胶带等辅助加工"],
+        "featuresEn": ["Supports U-shaped binding and 3D chest binding processes", "Chest binding control cylinders are easily interchangeable (0.6 and 0.8 specs)", "Finished binding width can reach up to 12mm", "Perfectly supports auxiliary processing like taping"],
+        "specsZh": { "运行速度": "0-150mm/秒", "气动元件": "亚德客/SMC", "最大功率": "2500W", "净重/毛重": "100kg / 160kg" },
+        "specsEn": { "Running Speed": "0-150mm/s", "Pneumatics": "AirTAC/SMC", "Max Power": "2500W", "Weight": "100kg / 160kg" }
+      },
+      { 
+        "id": 9, "code": "JC-6820", "nameZh": "JC-6820 热风机", "nameEn": "JC-6820 Hot Air Sealing Machine", "category": "heatSealing", 
+        "image": "images/6820-hot-air-sealing-machine.jpg",
+        "descZh": "防风衣贴防水条、压防滑胶条专用，全 PLC 编程控制系统。", 
+        "descEn": "Dedicated for waterproof and anti-slip taping on windbreakers, PLC controlled.",
+        "featuresZh": ["专用于直线加工：防风衣贴防水条、压防滑护间胶条", "上下轮不同速度调节，精准控制弹性物料尺寸", "复合式风嘴运动轨迹，保障复杂缝位平顺", "全 PLC 编程控制系统，全新外观设计"],
+        "featuresEn": ["Dedicated to straight-line processing: waterproof tape on windbreakers, anti-slip strips", "Differential speed control for upper/lower rollers to manage elastic materials precisely", "Composite air nozzle trajectory ensures smooth processing on complex seams", "Full PLC programmable control system with a brand-new exterior design"],
+        "specsZh": { "设备功率": "3600W", "风嘴尺寸": "22mm", "最大速度": "60ft/min", "外形尺寸": "1200*655*1700mm", "机器重量": "110kg / 160kg" },
+        "specsEn": { "Power": "3600W", "Nozzle Size": "22mm", "Max Speed": "60ft/min", "Dimensions": "1200*655*1700mm", "Weight": "110kg / 160kg" }
+      },
+      { 
+        "id": 10, "code": "JC-6852", "nameZh": "JC-6852 贴胶机", "nameEn": "JC-6852 Adhesive Film Fusing Machine", "category": "heatSealing", 
+        "image": "images/6852-adhesive-film-fusing-machine.jpg",
+        "descZh": "大部位直线折边、贴胶、贴条、贴防滑条专用，速度极快高产量。", 
+        "descEn": "Specialized for large area straight folding, taping, and anti-slip strips, extremely fast.",
+        "featuresZh": ["专做直线加工：大部位直线折边、贴胶、贴条、贴防滑条", "支持极致拉伸与收缩控制（>100抽长，<100收缩）", "生产速度极快，大幅节省人工成本", "吹风与发热槽独立调节温度"],
+        "featuresEn": ["Straight-line processing only: large area straight folding, taping, anti-slip strips", "Supports extreme stretch and shrink control (>100 elongate, <100 shrink)", "Extremely fast production speed, significantly saving labor costs", "Independent temperature control for blowing air and heating tank"],
+        "specsZh": { "运行速度": "0-150mm/秒", "最大功率": "2100W", "压缩空气": "0.5Mpa", "净重/毛重": "80kg / 140kg" },
+        "specsEn": { "Running Speed": "0-150mm/s", "Max Power": "2100W", "Air Pressure": "0.5Mpa", "Weight": "80kg / 140kg" }
+      },
+      { 
+        "id": 11, "code": "JC-6862A", "nameZh": "JC-6862A 贴胶机(露芽机)", "nameEn": "JC-6862A Adhesive Film Fusing Machine", "category": "heatSealing", 
+        "image": "images/6862a-adhesive-film-fusing-machine.jpg",
+        "descZh": "专做底裤直线露芽工艺，带切边功能，支持直边微调与贴骨条。", 
+        "descEn": "Specialized for edge exposure process with trimming, supports straight edge tuning.",
+        "featuresZh": ["专属工艺：内裤底裤直线露芽处理，附带切边功能", "只能做直线加工，支持弹性带、贴骨条及直边微调", "吹风及发热槽独立调节温度与风量", "带切刀修剪布料止口，边缘整齐"],
+        "featuresEn": ["Exclusive process: straight edge exposure for underwear bottoms, with edge trimming function", "Straight-line processing only, supports elastic bands, bone taping, and straight edge fine-tuning", "Independent adjustment of temperature and air volume for blowing and heating tank", "Equipped with a cutter to trim fabric edges neatly"],
+        "specsZh": { "运行速度": "0-150mm/秒", "最大功率": "2100W", "压脚方式": "气缸驱动", "净重/毛重": "80kg / 160kg" },
+        "specsEn": { "Running Speed": "0-150mm/s", "Max Power": "2100W", "Presser Foot": "Cylinder driven", "Weight": "80kg / 160kg" }
+      },
+      { 
+        "id": 12, "code": "JC-6862", "nameZh": "JC-6862 贴胶机", "nameEn": "JC-6862 Adhesive Film Fusing Machine", "category": "heatSealing", 
+        "image": "images/6862-adhesive-film-fusing-machine.jpg",
+        "descZh": "发热槽加长型设计，预热快贴合度好，切刀可关闭，轮式设计转弯灵活。", 
+        "descEn": "Long heating tank for strong bonds, cutter can be disabled, wheel design for flexible turning.",
+        "featuresZh": ["发热槽加长设计：预热时间长，胶膜贴合度更完美", "切刀支持关闭：可用于车缝骨位贴胶、贴条、贴捆条等", "轮式设计更便于弯形作业的灵活转向", "滚轮压力可视化微调"],
+        "featuresEn": ["Extended heating tank design: longer preheating time for perfect film adhesion", "Cutter can be turned off: suitable for seam bone taping, binding, etc. without cutting", "Wheel design facilitates flexible turning for curved operations", "Visible fine-tuning of roller pressure"],
+        "specsZh": { "最大功率": "2700W", "运行速度": "0-150mm/秒", "耗气量": "15-23L/min", "净重/毛重": "80kg / 160kg" },
+        "specsEn": { "Max Power": "2700W", "Running Speed": "0-150mm/s", "Air Consumption": "15-23L/min", "Weight": "80kg / 160kg" }
+      },
+      { 
+        "id": 13, "code": "JC-6862B", "nameZh": "JC-6862B 贴胶机", "nameEn": "JC-6862B Adhesive Film Fusing Machine", "category": "heatSealing", 
+        "image": "images/6862b-adhesive-film-fusing-machine.jpg",
+        "descZh": "发热槽较短视线宽广，极适合极薄料、弯形立体拼缝及海绵罩杯加工。", 
+        "descEn": "Short heating tank for wide vision, perfect for ultra-thin materials and sponge cups.",
+        "featuresZh": ["专属短发热槽设计：视线开阔，转弯灵敏，适合弯形立体拼缝", "极适合极薄面料及带有海绵的内衣罩杯加工", "全能型轮子机：兼具贴胶、贴骨、贴布、涂布功能"],
+        "featuresEn": ["Exclusive short heating tank: wide vision, sensitive turning, ideal for 3D curved splicing", "Extremely suitable for ultra-thin fabrics and sponge underwear cups", "All-round wheel machine: capable of gluing, bone taping, fabric taping, and coating"],
+        "specsZh": { "运行速度": "0-150mm/秒", "底边带胶宽": "约 6mm", "最大功率": "2700W", "净重/毛重": "80kg / 160kg" },
+        "specsEn": { "Running Speed": "0-150mm/s", "Bottom Glue Width": "Approx 6mm", "Max Power": "2700W", "Weight": "80kg / 160kg" }
+      },
+      { 
+        "id": 14, "code": "JC-7090", "nameZh": "JC-7090 上下加热大平压机", "nameEn": "JC-7090 Flat Press Machine", "category": "hotPress", 
+        "image": "images/7090-flat-press-machine.jpg",
+        "descZh": "700*900mm超大尺寸台面，16000W大功率，适合胶膜片胶大面积热压。", 
+        "descEn": "700*900mm large table, 16000W power, ideal for large area film/sheet pressing.",
+        "featuresZh": ["双工位移动工作台设计，产量倍增", "专攻压胶膜、片胶、大面积热压定型工艺", "温度与时间均独立可调，恒温控制更精准", "内置弹簧自动调整平衡，确保整体热压面受力均匀"],
+        "featuresEn": ["Double-station mobile worktable design doubles production output", "Specializes in film pressing, sheet gluing, and large-area heat setting", "Independent adjustment of temperature and time for precise thermostatic control", "Built-in spring auto-balance ensures uniform pressure across the heating surface"],
+        "specsZh": { "工作尺寸": "700mm*900mm", "整机功率": "16000W", "工作电压": "380V", "外形尺寸": "1900*1100*1720mm", "机器重量": "500kg" },
+        "specsEn": { "Working Size": "700mm*900mm", "Total Power": "16000W", "Voltage": "380V", "Dimensions": "1900*1100*1720mm", "Weight": "500kg" }
+      },
+      { 
+        "id": 15, "code": "JC-8853", "nameZh": "JC-8853 折边机", "nameEn": "JC-8853 Folding Machine", "category": "binding", 
+        "image": "images/8853-folding-machine.jpg",
+        "descZh": "纯皮带机直线加工，无切刀，高产能输出单日可达 800-1000条。", 
+        "descEn": "Belt-driven straight processor, no cutter, high daily output of 800-1000 strips.",
+        "featuresZh": ["纯皮带机传动：专供直线贴胶带、折边胶、纯折边", "高产能：单日产能约 800-1000条，适用于裤脚、袖口、底摆", "不带切刀：配合气动压条，贴压 10 秒即可定型成型", "严禁加工温度高于 220 度"],
+        "featuresEn": ["Pure belt drive: exclusively for straight taping, edge folding glue, or pure folding", "High output: ~800-1000 pieces per day, suitable for trouser legs, cuffs, and hems", "No cutter: press and set in 10 seconds with pneumatic pressing strips", "Strictly prohibit processing temperatures above 220°C"],
+        "specsZh": { "运行速度": "0-150mm/秒", "最大功率": "3500W", "压缩空气": "0.5Mpa", "净重/毛重": "100kg / 160kg" },
+        "specsEn": { "Running Speed": "0-150mm/s", "Max Power": "3500W", "Air Pressure": "0.5Mpa", "Weight": "100kg / 160kg" }
+      },
+      { 
+        "id": 16, "code": "JC-8863", "nameZh": "JC-8863 套贴机", "nameEn": "JC-8863 Collage Bonding Machine", "category": "binding", 
+        "image": "images/8863-collage-bonding-machine.jpg",
+        "descZh": "专为立体产品研发，精通侧骨拼接、侧骨拼缝及图案拼缝套骨。", 
+        "descEn": "Designed for 3D products, expert in side bone splicing and pattern bonding.",
+        "featuresZh": ["专为立体产品研发：处理新出棉杯、领口、袖口、下摆等部位", "强势解决复杂拼接：精通侧骨拼接、底步边定位及图案拼缝套骨", "复合传动：上滚轮皮带，下滚轮，过料更顺畅不打滑"],
+        "featuresEn": ["Developed for 3D products: handles cotton cups, collars, cuffs, hems, etc.", "Strongly solves complex splicing: masters side bone splicing, hem positioning, and pattern bonding", "Composite drive: upper roller belt and lower roller for smooth, non-slip material feeding"],
+        "specsZh": { "拼缝宽度": "约 8-15mm", "最大功率": "2500W", "压脚提升": "10mm", "净重/毛重": "80kg / 160kg" },
+        "specsEn": { "Splicing Width": "Approx 8-15mm", "Max Power": "2500W", "Foot Lift": "10mm", "Weight": "80kg / 160kg" }
+      },
+      { 
+        "id": 17, "code": "JC-70110", "nameZh": "JC-70110 单工位刷胶机", "nameEn": "JC-70110 Screen Print Machine", "category": "brushing", 
+        "image": "images/70110-screen-print-machine.jpg",
+        "descZh": "特制胶刮刀利用向心力平滑印刷，单工位适合多品种中小批量生产。", 
+        "descEn": "Centripetal force squeegee for smooth printing, single station for small batches.",
+        "featuresZh": ["单工位设计，极其适合中小批量的面料刷胶与复合", "具备上下浸度调节及胶版高度独立调节功能", "采用特制胶刮刀，利用向心力实现平滑印刷效果", "配合果冻胶及液态氨纶使用效果绝佳"],
+        "featuresEn": ["Single-station design, perfectly suited for small and medium batch fabric gluing", "Equipped with upper/lower immersion adjustment and independent squeegee height control", "Uses a special squeegee leveraging centripetal force for extremely smooth printing", "Excellent results when used with jelly glue and liquid spandex"],
+        "specsZh": { "印刷规格": "600*1000mm", "速度": "600~1200 PCS/H", "承印物厚度": "0~80mm", "重复精度": "±0.10mm", "设备重量": "≈780KG" },
+        "specsEn": { "Print Size": "600*1000mm", "Speed": "600~1200 PCS/H", "Substrate Thickness": "0~80mm", "Repeat Accuracy": "±0.10mm", "Weight": "≈780KG" }
+      },
+      { 
+        "id": 18, "code": "JC-70110S", "nameZh": "JC-70110S 双工位刷胶机", "nameEn": "JC-70110S Screen Print Machine", "category": "brushing", 
+        "image": "images/70110s-screen-print-machine.jpg",
+        "descZh": "双工位交替移动工作台，生产效率翻倍，利用向心力胶刮平滑印刷。", 
+        "descEn": "Double-station alternating table doubles efficiency, smooth centripetal printing.",
+        "featuresZh": ["搭载双工位移动工作台，操作员交替上下料，效率翻倍", "特制向心力胶刮刀，印刷涂布极为平滑", "网版 X/Y 方向支持微调，精度高运行平稳"],
+        "featuresEn": ["Equipped with a double-station mobile table for alternating loading/unloading, doubling efficiency", "Special centripetal force squeegee for extremely smooth printing and coating", "Screen X/Y direction supports fine-tuning, high precision and stable operation"],
+        "specsZh": { "印刷规格": "600*1000mm", "速度": "600~1200 PCS/H", "最大真空度": "-80kpa", "外形尺寸": "2850*1420*1700mm", "设备重量": "≈780KG" },
+        "specsEn": { "Print Size": "600*1000mm", "Speed": "600~1200 PCS/H", "Max Vacuum": "-80kpa", "Dimensions": "2850*1420*1700mm", "Weight": "≈780KG" }
+      },
+      { 
+        "id": 19, "code": "JC-BJ1", "nameZh": "JC-BJ1 全自动超声波驳接机", "nameEn": "JC-BJ1 Ultrasonic Splicing Machine", "category": "splicing", 
+        "image": "images/bj1-ultrasonic-splicing-machine.jpg",
+        "descZh": "独有废料回收与无张力自适应送料，解决复合生产中的起皱现象。", 
+        "descEn": "Unique waste recovery and tension-free adaptive feeding, solves wrinkling.",
+        "featuresZh": ["PLC 可编程控制系统，全双拉自动化生产效率极高", "独有废料回收功能，减少原材料浪费", "无张力自适应送料装置，彻底解决复合起皱现象", "常用驳接宽度：52mm"],
+        "featuresEn": ["PLC programmable control system, double-pull automation for extremely high efficiency", "Unique waste recovery function reduces raw material waste", "Tension-free adaptive feeding device completely solves compound wrinkling issues", "Common splicing width: 52mm"],
+        "specsZh": { "驳接宽度": "52mm", "电源功率": "220V/2.5kW", "外形尺寸": "1600*740*1720mm", "设备重量": "350kg" },
+        "specsEn": { "Splicing Width": "52mm", "Power": "220V/2.5kW", "Dimensions": "1600*740*1720mm", "Weight": "350kg" }
+      },
+      { 
+        "id": 20, "code": "JC-BJ6", "nameZh": "JC-BJ6 全自动补胶机", "nameEn": "JC-BJ6 Automatic Glue Filling Machine", "category": "splicing", 
+        "image": "images/bj6-automatic-glue-filling-machine.jpg",
+        "descZh": "双工位自动化作业，触控屏交互一目了然，解决人工加胶造成的浪费。", 
+        "descEn": "Double-station automation, intuitive touchscreen, saves glue waste.",
+        "featuresZh": ["专为无缝成品接缝处进行二次补胶加固", "高效双工位设计，流水线操作顺畅拒绝卡顿", "触摸屏人机交互界面，所有功能一目了然", "自动加胶与切胶装置一体化，胶带长度可调"],
+        "featuresEn": ["Designed for secondary glue reinforcement at the seams of seamless finished products", "Efficient double-station design for smooth, jam-free assembly line operations", "Touchscreen human-machine interface makes all functions clear at a glance", "Integrated automatic gluing and cutting device with adjustable tape length"],
+        "specsZh": { "工位": "双工位", "人机界面": "触摸屏", "功率": "220V/350W", "尺寸": "620*520*1100mm", "重量": "65kg" },
+        "specsEn": { "Station": "Double Station", "Interface": "Touchscreen", "Power": "220V/350W", "Dimensions": "620*520*1100mm", "Weight": "65kg" }
+      },
+      { 
+        "id": 21, "code": "JC-F01", "nameZh": "JC-F01 果冻胶复合机", "nameEn": "JC-F01 Jelly Glue Laminating Machine", "category": "brushing", 
+        "image": "images/f01-jelly-glue-laminating-machine.jpg",
+        "descZh": "搭载亚德客气动原件，三模式灵活切换，高负压真空吸附不移位。", 
+        "descEn": "AirTAC pneumatics, 3 operating modes, high vacuum suction prevents shifting.",
+        "featuresZh": ["专攻大面积果冻胶复合，手感柔顺无与伦比", "支持手动、半自动及全自动三种灵活模式", "搭载台湾亚德客(AirTAC)气动电磁阀，响应极速", "高负压真空吸附系统（-180kpa），复合不移位"],
+        "featuresEn": ["Specializes in large-area jelly glue lamination, unparalleled soft hand-feel", "Supports manual, semi-auto, and fully automatic flexible operating modes", "Equipped with Taiwan AirTAC pneumatic solenoid valves for ultra-fast response", "High negative pressure vacuum suction (-180kpa) ensures no shifting during lamination"],
+        "specsZh": { "最大贴合尺寸": "500*1000mm", "贴合精度": "±0.08mm", "功率": "220V/50Hz", "重量": "300kg" },
+        "specsEn": { "Max Lamination Size": "500*1000mm", "Accuracy": "±0.08mm", "Power": "220V/50Hz", "Weight": "300kg" }
+      },
+      { 
+        "id": 22, "code": "JC-KT1A", "nameZh": "JC-KT1A 全自动腰头定位机", "nameEn": "JC-KT1A Automatic Waistband Positioning Machine", "category": "waistband", 
+        "image": "images/kt1a-waistband-positioning-machine.jpg",
+        "descZh": "行业独有自适应调宽功能，完美解决裤身尺寸不一导致的定位偏差。", 
+        "descEn": "Industry-exclusive adaptive width adjustment solves sizing inconsistencies.",
+        "featuresZh": ["行业独有自适应调宽功能，解决裤身尺寸不一致痛点", "下模可自由无缝更换，下模可自适应宽窄调节", "采用德客气动原件与 PLC 可编程控制系统", "触摸屏人机界面，所有功能一目了然"],
+        "featuresEn": ["Industry-exclusive adaptive width adjustment solves the pain point of inconsistent pant sizes", "Lower mold can be freely and seamlessly replaced, with adaptive width/narrow adjustment", "Utilizes AirTAC pneumatics and PLC programmable control system", "Touchscreen HMI makes all functions clear at a glance"],
+        "specsZh": { "功率": "220V/1.2kW", "控制系统": "PLC", "尺寸": "580*510*1150mm", "重量": "70kg" },
+        "specsEn": { "Power": "220V/1.2kW", "Control System": "PLC", "Dimensions": "580*510*1150mm", "Weight": "70kg" }
+      },
+      { 
+        "id": 23, "code": "JC-KT3", "nameZh": "JC-KT3 无缝腰头滚压机", "nameEn": "JC-KT3 Seamless Waistband Rolling Machine", "category": "waistband", 
+        "image": "images/kt3-waistband-rolling-machine.jpg",
+        "descZh": "三工位自动旋转机构，内置五套冷热压烫工艺，实现绝对精准定位。", 
+        "descEn": "3-station auto-rotation, 5 sets of cold/hot pressing for absolute precision.",
+        "featuresZh": ["三工位自动旋转机构，多 PLC 编程控制", "特有五套冷热压烫工艺，适配各种面料粘合硬性要求", "采用高精度马达配合研磨级丝杠，定位极其精准", "广泛用于内裤、裙子、运动裤等冷热压烫"],
+        "featuresEn": ["Three-station automatic rotation mechanism with multiple PLC controls", "Unique 5 sets of cold and hot pressing processes to meet various fabric bonding requirements", "High-precision motor and grinding-grade lead screw for extremely precise positioning", "Widely used for cold and hot pressing of panties, skirts, sports pants, etc."],
+        "specsZh": { "工位": "三工位", "传动": "研磨级丝杠", "功率": "220V/8.5kW", "尺寸": "1550*750*1750mm", "重量": "950kg" },
+        "specsEn": { "Station": "Three Station", "Transmission": "Grinding lead screw", "Power": "220V/8.5kW", "Dimensions": "1550*750*1750mm", "Weight": "950kg" }
+      },
+      { 
+        "id": 24, "code": "JC-MP01", "nameZh": "JC-MP01 套贴机", "nameEn": "JC-MP01 Collage Bonding Machine", "category": "binding", 
+        "image": "images/mp01-collage-bonding-machine.jpg",
+        "descZh": "带专属小轮皮带，专攻复杂内外侧、下摆及波浪缝拼接，转弯无难度。", 
+        "descEn": "Exclusive small wheel belt handles complex inner/outer, hem, and wave splicing easily.",
+        "featuresZh": ["带专属小轮皮带，专攻内外侧、下摆等复杂折边", "支持波浪拼接、刚骨拼搭，不成直线波可切圆处理", "广泛用于贴骨、领口、袖口、底摆、贴条、裤脚", "上下皮带独立精密调节速度与温度"],
+        "featuresEn": ["Exclusive small wheel belt specialized for complex folding on inner/outer sides and hems", "Supports wave splicing and rigid bone matching; non-linear waves can be circle-cut", "Widely used for bone taping, collars, cuffs, hems, strip taping, and trouser legs", "Upper and lower belts have independent precision speed and temp controls"],
+        "specsZh": { "速度": "0-150mm/秒", "最大功率": "2500W", "拼缝宽度": "约 12mm", "净重/毛重": "100kg / 160kg" },
+        "specsEn": { "Speed": "0-150mm/s", "Max Power": "2500W", "Splicing Width": "Approx 12mm", "Weight": "100kg / 160kg" }
+      },
+      { 
+        "id": 25, "code": "JC-TM1", "nameZh": "JC-TM1 无缝腰头布松紧复合机", "nameEn": "JC-TM1 Seamless Loincloth Elastic Composite Machine", "category": "waistband", 
+        "image": "images/tm1-elastic-composite-machine.jpg",
+        "descZh": "专攻腰头捆条上胶复合，独家无张力自适应送料，彻底杜绝起皱。", 
+        "descEn": "Specialized for tension-free adaptive gluing and compounding, prevents wrinkles.",
+        "featuresZh": ["专用于捆条、明筋、橡胶肩带的上胶及复合加工", "独家无张力自适应送料装置，解决高弹性材料复合起皱痛点", "皮带加热粘合，热贴合范围长达 400mm", "设置防打结及报警自动停机装置", "日产量高达 900m/h"],
+        "featuresEn": ["Dedicated to gluing and compounding of binding strips, exposed elastics, and rubber straps", "Exclusive tension-free adaptive feeding device solves the wrinkling of highly elastic materials", "Belt heating bonding with a thermal bonding range up to 400mm", "Equipped with anti-knotting device and alarm auto-shutdown system", "Daily output reaches up to 900m/h"],
+        "specsZh": { "复合宽度": "1mm - 25mm", "功率": "220V/0.9kW", "尺寸": "1520*510*590mm", "重量": "80kg" },
+        "specsEn": { "Composite Width": "1mm - 25mm", "Power": "220V/0.9kW", "Dimensions": "1520*510*590mm", "Weight": "80kg" }
+      },
+      { 
+        "id": 26, "code": "JC-450", "nameZh": "JC-450 冷热滚筒机", "nameEn": "JC-450 Cool + Heat Fusing Machine", "category": "hotPress", 
+        "image": "images/450-fusing-machine.jpg",
+        "descZh": "无缝制衣热熔胶、PUR 点胶贴合专用，支持鞋材、皮具、电子胶套加工。", 
+        "descEn": "For PUR glue, hot melt film bonding and lamination of various materials.",
+        "featuresZh": ["支持 PUR 点胶及热熔胶膜复合贴合工艺", "冷热双向处理，确保贴合牢固不溢胶", "适用于各种鞋材、皮具、电子产品胶套贴合", "最高速度可达 30m/min"],
+        "featuresEn": ["Supports PUR dispensing and hot melt adhesive film composite lamination", "Dual cold and hot processing ensures firm bonding without glue overflow", "Suitable for lamination of shoe materials, leather, and electronic product sleeves", "Max speed up to 30m/min"],
+        "specsZh": { "电压": "380V/50Hz", "速度": "<30m/min", "外形尺寸": "450*235*130cm", "重量": "2600kg" },
+        "specsEn": { "Voltage": "380V/50Hz", "Speed": "<30m/min", "Dimensions": "450*235*130cm", "Weight": "2600kg" }
+      },
+      { 
+        "id": 27, "code": "JC-T900", "nameZh": "JC-T900 贴胶一体机", "nameEn": "JC-T900 Gluing Machine", "category": "heatSealing", 
+        "image": "images/t900-gluing-machine.jpg",
+        "descZh": "单人操作，自动修边、上胶、折边、压烫一次完成，极大地节省人工。", 
+        "descEn": "Single person operation, automatic trimming, gluing, folding, and pressing at one time.",
+        "featuresZh": ["全自动一体化：所有直线无痕产品（如T恤、内裤），修边、上胶、折边、压烫一次性完成（连带胶带）", "极其节省人工：比传统设备省 1/2 人工，单人即可操作整套流程", "高效高产：新手10分钟上手，1小时可做240-480片", "品质提升：不空边、不大小边、不拉丝、不缩短面料", "可视化触摸屏设定拉胶长度，精准控制不浪费胶水"],
+        "featuresEn": ["Fully automated: Automatic trimming, gluing, folding, and pressing at one time for straight seamless products (like T-shirts, underwear)", "Labor saving: Saves 1/2 the workforce compared to traditional equipment; one person operates the whole process", "High efficiency: Novice starts in 10 mins, produces 240-480 pieces/hour", "Quality improvement: No empty edges, no uneven edges, no stringing, no fabric shrinkage", "Visual touch screen to set glue length, precise control without waste"],
+        "specsZh": { "片胶宽度": "0-40mm可调", "加工长度": "0-750mm", "产能": "4-10片/次", "最高温度": "350°C", "功率与电压": "6kW / 220V-240V", "机身尺寸": "182*57*161cm", "机器重量": "385kg" },
+        "specsEn": { "Sheet Width": "0-40mm adjustable", "Processing Length": "0-750mm", "Capacity": "4-10 pieces/time", "Max Temp": "350°C", "Power & Voltage": "6kW / 220V-240V", "Dimensions": "182*57*161cm", "Weight": "385kg" }
+      },
+      { 
+        "id": 28, "code": "JC-NT22", "nameZh": "JC-NT22 熔贴机", "nameEn": "JC-NT22 Ultrasonic Bonding Machine", "category": "splicing", 
+        "image": "images/nt22-ultrasonic-bonding-machine.jpg",
+        "descZh": "专业超声波无缝熔贴设备，高效稳定，适用于多种面料无缝拼接与熔合。", 
+        "descEn": "Professional ultrasonic seamless bonding machine, highly efficient and stable for various fabrics.",
+        "featuresZh": ["采用先进超声波熔接技术，无缝贴合更牢固", "无需针线，表面平滑美观，彻底解决起皱与摩擦问题", "适用范围广，可用于各种化纤布料与运动面料", "操作简便，性能极其稳定，适合长时间流水线作业"],
+        "featuresEn": ["Advanced ultrasonic welding technology for stronger seamless bonding", "No needles or threads needed, smooth and beautiful surface without friction", "Wide application for various synthetic fabrics and sportswear", "Easy operation and extremely stable performance, suitable for long-term assembly line work"],
+        "specsZh": { "工作原理": "超声波熔接", "控制系统": "智能集成电路", "工作效率": "高效连续生产", "适用材质": "化纤、无纺布等" },
+        "specsEn": { "Working Principle": "Ultrasonic Welding", "Control System": "Smart Integrated Circuit", "Efficiency": "High-speed continuous", "Applicable Material": "Synthetic, Non-woven, etc." }
+      }
+    ];
+    
+    const featuredOrder = [2, 3, 7, 12, 16, 27]; 
+
+    let activeCategory = "all";
+    let currentLang = "zh";
+    let currentProduct = null;
+
+    const categoryTabs = document.getElementById("categoryTabs");
+    const productGrid = document.getElementById("productGrid");
+    const featuredGrid = document.getElementById("featuredGrid");
+    const searchInput = document.getElementById("searchInput");
+    const emptyState = document.getElementById("emptyState");
+    const searchBtn = document.getElementById("searchBtn");
+
+    function t(key) { return UI[currentLang][key] || UI.zh[key] || key; }
+    function categoryLabel(key) { const item = categories.find(c => c.key === key); return item ? item[currentLang] : key; }
+    function productName(product) { return currentLang === "en" ? product.nameEn : product.nameZh; }
+    function productDesc(product) { return currentLang === "en" ? product.descEn : product.descZh; }
+
+    function getMessage(product) {
+      if (product) return t("productMsgPrefix") + productName(product) + t("productMsgSuffix");
+      return t("defaultMsg");
+    }
+
+    function whatsappUrl(message) { return `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(message)}`; }
+    function telegramUrl(message) { return `https://t.me/${CONTACT.telegramUser}?text=${encodeURIComponent(message)}`; }
+    function emailUrl(message) {
+      const subject = currentLang === 'en' ? "Machine Inquiry" : "设备询价";
+      return `mailto:flechazo216@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    }
+
+    function refreshContactLinks() {
+      const defaultText = getMessage(null);
+      document.querySelectorAll(".js-whatsapp:not(.js-modal-wa)").forEach(link => { link.href = whatsappUrl(defaultText); });
+      document.querySelectorAll(".js-telegram:not(.js-modal-tg)").forEach(link => { link.href = telegramUrl(defaultText); });
+      document.querySelectorAll(".js-email:not(.js-modal-em)").forEach(link => { link.href = emailUrl(defaultText); });
+
+      if (currentProduct) {
+        const productText = getMessage(currentProduct);
+        document.querySelectorAll(".js-modal-wa").forEach(btn => { btn.onclick = () => { window.open(whatsappUrl(productText), '_blank'); }; });
+        document.querySelectorAll(".js-modal-tg").forEach(btn => { btn.onclick = () => { window.open(telegramUrl(productText), '_blank'); }; });
+        document.querySelectorAll(".js-modal-em").forEach(btn => { btn.onclick = () => { location.href = emailUrl(productText); }; });
+      }
+    }
+
+    function productCard(product) {
+      const playBadge = product.youtubeId 
+        ? `<div class="play-icon-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>` 
+        : '';
+        
+      return `
+        <article class="product-card" onclick="openModal(${product.id})" style="cursor:pointer;">
+          <div class="product-image">
+            <img src="${product.image}" alt="${productName(product)}">
+            ${playBadge}
+          </div>
+          <div class="product-body">
+            <div class="product-meta">
+              <span class="badge">${categoryLabel(product.category)}</span>
+              <span class="code">${product.code}</span>
+            </div>
+            <h3>${productName(product)}</h3>
+            <p>${productDesc(product)}</p>
+            <div class="product-actions">
+              <button class="small-btn detail">${t("detail")}</button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderTabs() {
+      categoryTabs.innerHTML = categories.map(category => `
+        <button class="tab-btn ${category.key === activeCategory ? "active" : ""}" onclick="setCategory('${category.key}')">${category[currentLang]}</button>
+      `).join("");
+    }
+
+    function renderProducts() {
+      const keyword = searchInput.value.trim().toLowerCase();
+      const filtered = products.filter(product => {
+        const matchCategory = activeCategory === "all" || product.category === activeCategory;
+        const text = [product.nameZh, product.nameEn, product.code, product.descZh, product.descEn].join(" ").toLowerCase();
+        return matchCategory && (!keyword || text.includes(keyword));
+      });
+      productGrid.innerHTML = filtered.map(productCard).join("");
+      emptyState.style.display = filtered.length ? "none" : "block";
+    }
+
+    function renderFeatured() {
+      const featured = featuredOrder.map(id => products.find(p => p.id === id)).filter(Boolean);
+      featuredGrid.innerHTML = featured.map(productCard).join("");
+    }
+
+    function setCategory(category) { activeCategory = category; renderTabs(); renderProducts(); }
+
+    function updateModalContent() {
+      if (!currentProduct) return;
+      const product = currentProduct;
+      document.getElementById("modalTitle").textContent = productName(product);
+      document.getElementById("modalCategory").textContent = categoryLabel(product.category);
+      document.getElementById("modalDesc").textContent = productDesc(product);
+      
+      const modalImgWrapper = document.getElementById("modalImage");
+      const ytContainer = document.getElementById("modalYtContainer");
+      const ytBtn = document.getElementById("modalYoutubeBtn");
+
+      if (product.youtubeId) {
+        modalImgWrapper.classList.add("is-video");
+        modalImgWrapper.innerHTML = `
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/${product.youtubeId}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        `;
+        ytContainer.style.display = "block";
+        ytBtn.href = `https://www.youtube.com/watch?v=${product.youtubeId}`;
+      } else {
+        modalImgWrapper.classList.remove("is-video");
+        modalImgWrapper.innerHTML = `<img src="${product.image}" alt="${productName(product)}">`;
+        ytContainer.style.display = "none";
+      }
+      
+      const features = currentLang === 'en' ? product.featuresEn : product.featuresZh;
+      const featuresHTML = features && features.length ? features.map(f => `<li>${f}</li>`).join("") : `<li>${t('noFeatures')}</li>`;
+      document.getElementById("modalFeatures").innerHTML = featuresHTML;
+
+      const specs = currentLang === 'en' ? product.specsEn : product.specsZh;
+      let specsHTML = "";
+      if (specs) {
+        specsHTML = Object.entries(specs).map(([key, value]) => `<tr><th>${key}</th><td>${value}</td></tr>`).join("");
+      }
+      document.getElementById("modalSpecs").innerHTML = specsHTML || `<tr><th>Tips</th><td>${t('noSpecs')}</td></tr>`;
+
+      document.querySelector('.specs-section:nth-of-type(1) h4').textContent = t('modalFeaturesTitle');
+      document.querySelector('.specs-section:nth-of-type(2) h4').textContent = t('modalSpecsTitle');
+      document.getElementById("modalYoutubeBtn").querySelector('span').textContent = t('watchYoutube');
+
+      refreshContactLinks();
+    }
+
+    function openModal(id) {
+      const product = products.find(item => item.id === id);
+      if (!product) return;
+      currentProduct = product;
+      updateModalContent();
+      document.getElementById("productModal").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() { 
+      document.getElementById("productModal").classList.remove("show"); 
+      document.body.style.overflow = ""; 
+      document.getElementById("modalImage").innerHTML = ""; 
+      currentProduct = null;
+    }
+
+    function setLanguage(lang, manual = false) {
+      currentLang = lang;
+      document.documentElement.lang = currentLang === "zh" ? "zh-CN" : "en";
+      document.querySelectorAll("[data-i18n]").forEach(el => { el.innerHTML = t(el.getAttribute("data-i18n")); });
+      document.querySelectorAll("[data-placeholder-i18n]").forEach(el => { el.placeholder = t(el.getAttribute("data-placeholder-i18n")); });
+      document.getElementById("langZh").classList.toggle("active", currentLang === "zh");
+      document.getElementById("langEn").classList.toggle("active", currentLang === "en");
+      if (manual) localStorage.setItem("siteLang", currentLang);
+      
+      renderTabs(); 
+      renderFeatured(); 
+      renderProducts();
+      refreshContactLinks();
+      
+      if (currentProduct) {
+        updateModalContent();
+      }
+    }
+
+    searchBtn.addEventListener("click", renderProducts);
+    searchInput.addEventListener("keypress", function(e) { if (e.key === "Enter") { e.preventDefault(); renderProducts(); } });
+    searchInput.addEventListener("input", function() { if (this.value.trim() === "") renderProducts(); });
+    document.getElementById("productModal").addEventListener("click", e => { if (e.target.id === "productModal") closeModal(); });
+
+    const savedLang = localStorage.getItem("siteLang") || "zh";
+    setLanguage(savedLang);
+
+    // =========================================================
+    // 核心 JS：巨型底部 JC 标志特效 (Interactive Glitch Smear)
+    // =========================================================
+    const glitchFooter = document.getElementById('glitchFooter');
+    const sliceCount = 60; 
+    const slices = [];
+    let targetShifts = new Array(sliceCount).fill(0);
+    let currentShifts = new Array(sliceCount).fill(0);
+    
+    for (let i = 0; i < sliceCount; i++) {
+      const slice = document.createElement('div');
+      slice.className = 'giant-text slice';
+      slice.textContent = 'JC';
+      const top = (i / sliceCount) * 100;
+      const bottom = 100 - ((i + 1) / sliceCount) * 100;
+      slice.style.clipPath = `inset(${top}% 0 ${bottom}% 0)`;
+      glitchFooter.appendChild(slice);
+      slices.push(slice);
+    }
+
+    let lastMouseX = 0;
+    let isMouseInFooter = false;
+
+    glitchFooter.addEventListener('mouseenter', (e) => {
+      lastMouseX = e.clientX;
+      isMouseInFooter = true;
+      glitchFooter.classList.add('is-hovering');
+    });
+    glitchFooter.addEventListener('mouseleave', () => {
+      isMouseInFooter = false;
+      glitchFooter.classList.remove('is-hovering');
+    });
+    glitchFooter.addEventListener('mousemove', (e) => {
+      if (!isMouseInFooter) return;
+      const rect = glitchFooter.getBoundingClientRect();
+      const mouseY = e.clientY - rect.top;
+      const mouseX = e.clientX;
+      const mouseDx = mouseX - lastMouseX;
+      lastMouseX = mouseX;
+
+      slices.forEach((slice, i) => {
+        const sliceY = rect.height * ((i + 0.5) / sliceCount);
+        const distY = Math.abs(mouseY - sliceY);
+        const influenceRange = rect.height * 0.3; 
+        if (distY < influenceRange) {
+          const force = Math.cos((distY / influenceRange) * (Math.PI / 2)); 
+          targetShifts[i] += mouseDx * force * 1.5; 
+        }
+      });
+    });
+
+    function animateGlitch() {
+      for (let i = 0; i < sliceCount; i++) {
+        targetShifts[i] *= 0.85; 
+        currentShifts[i] += (targetShifts[i] - currentShifts[i]) * 0.3;
+        if (Math.abs(currentShifts[i]) > 0.05) {
+           slices[i].style.transform = `translate(calc(-50% + ${currentShifts[i]}px), -50%)`;
+        } else {
+           slices[i].style.transform = `translate(-50%, -50%)`;
+        }
+      }
+      requestAnimationFrame(animateGlitch);
+    }
+    animateGlitch();
+  </script>
+</body>
+</html>
