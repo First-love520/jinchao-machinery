@@ -83,8 +83,111 @@
     .hero-desc { font-size: 17px; color: var(--muted); margin-bottom: 40px; line-height: 1.7; max-width: 600px;}
     .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 48px;}
 
-    .showcase-card { border-radius: 32px; background: #ffffff; padding: 12px; border: 1px solid var(--blue-line); box-shadow: var(--shadow); }
-    .showcase-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 24px; background: #f8fafc;}
+    /* === 3D 层叠悬停交互卡片特效 (Hover Stack Carousel) === */
+    .showcase-card.stack-style {
+      border-radius: 32px;
+      background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+      border: 1px solid var(--blue-line);
+      box-shadow: inset 0 0 20px rgba(255,255,255,0.8), 0 20px 40px -10px rgba(37,99,235,0.1);
+      position: relative;
+      aspect-ratio: 1 / 1; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      perspective: 1200px; /* 增加3D透视纵深 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-slider .slide {
+      position: absolute;
+      width: 65%;
+      aspect-ratio: 4/5; 
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* 丝滑弹射动画 */
+      opacity: 0;
+      transform: translateX(40%) scale(0.7) rotate(15deg); /* 默认隐藏在右侧深处 */
+      z-index: 0;
+      border: 4px solid #ffffff; 
+      cursor: pointer;
+      pointer-events: none; /* 默认不可点击 */
+    }
+
+    .hero-slider .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 悬浮黑色半透明标签 */
+    .slide-label {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      letter-spacing: 0.5px;
+    }
+
+    /* --- 轮播核心层次逻辑 --- */
+    
+    /* 第一张：正前方最高层 */
+    .hero-slider .slide.active {
+      opacity: 1;
+      transform: translateX(-15%) scale(1) rotate(-3deg);
+      z-index: 3;
+      box-shadow: 0 25px 50px -12px rgba(37,99,235,0.3);
+      pointer-events: auto; /* 允许交互 */
+    }
+    .hero-slider .slide.active .slide-label { opacity: 1; }
+
+    /* 第二张：右侧露出一点，引导鼠标放上去 */
+    .hero-slider .slide.next {
+      opacity: 0.85;
+      transform: translateX(12%) scale(0.9) rotate(4deg);
+      z-index: 2;
+      pointer-events: auto; /* 允许悬停交互 */
+    }
+    .hero-slider .slide.next:hover {
+      transform: translateX(15%) scale(0.92) rotate(2deg); /* 微微浮动提示可点击 */
+      opacity: 0.95;
+    }
+
+    /* 第三张：更深处待命 */
+    .hero-slider .slide.next-next {
+      opacity: 0.4;
+      transform: translateX(35%) scale(0.8) rotate(10deg);
+      z-index: 1;
+      pointer-events: auto; /* 允许跨级悬停 */
+    }
+
+    /* 上一张：向左上方飞出消失 */
+    .hero-slider .slide.prev {
+      opacity: 0;
+      transform: translate(-50%, -20%) scale(1.1) rotate(-15deg);
+      z-index: 4;
+      pointer-events: none;
+    }
 
     /* --- 产品中心 --- */
     section { padding: 96px 0; }
@@ -247,6 +350,7 @@
       .modal-right { overflow-y: visible; padding-right: 0; padding-bottom: 0;}
       .giant-brand-footer { height: 60vw; }
       .giant-text { font-size: 60vw; }
+      .hero-slider .slide { width: 80%; } 
     }
     @media (max-width: 640px) {
       .nav { padding: 16px 0; align-items: flex-start; flex-direction: column; }
@@ -260,6 +364,7 @@
       .fab svg { width: 22px; height: 22px; }
       .giant-brand-footer { height: 80vw; }
       .giant-text { font-size: 80vw; }
+      .showcase-card.stack-style { aspect-ratio: auto; height: 450px; }
     }
   </style>
 </head>
@@ -306,16 +411,28 @@
             <div class="metric"><strong data-i18n="metricCategories">7大</strong><span data-i18n="metricCategoriesText">工艺分类</span></div>
           </div>
         </div>
-        <div class="showcase-card">
-          <img src="images/722s-visual-glue-machine.jpg" alt="Featured">
-          <div class="showcase-caption">
-            <div>
-              <h2 data-i18n="showcaseTitle">工业级标准设备</h2>
-              <p data-i18n="showcaseDesc">支持多电压定制，适应海外工厂要求</p>
+        
+        <div class="showcase-card stack-style" id="mainSlider">
+          <div class="hero-slider">
+            <div class="slide">
+              <img src="images/hero-building.jpg" alt="Building">
+              <div class="slide-label" data-i18n="slide1">金超智造园区</div>
+            </div>
+            <div class="slide">
+              <img src="images/hero-showroom.jpg" alt="Workshop">
+              <div class="slide-label" data-i18n="slide2">现代化生产车间</div>
+            </div>
+            <div class="slide">
+              <img src="images/hero-service.jpg" alt="Service">
+              <div class="slide-label" data-i18n="slide3">精工装配与调试</div>
+            </div>
+            <div class="slide">
+              <img src="images/hero-workshop.jpg" alt="Showroom">
+              <div class="slide-label" data-i18n="slide4">设备与样板展厅</div>
             </div>
           </div>
         </div>
-      </div>
+        </div>
     </section>
 
     <section id="featured" style="background: #f8fafc;">
@@ -422,7 +539,6 @@
         <div class="modal-left">
           <div id="modalImage" class="modal-image"></div>
           
-          <!-- YouTube 按钮容器 (仅视频存在时显示) -->
           <div id="modalYtContainer" style="display:none; text-align: right; margin-top: -12px; margin-bottom: 8px;">
             <a id="modalYoutubeBtn" href="#" target="_blank" class="btn btn-yt" style="display: inline-flex; width: auto; padding: 8px 16px; font-size: 13px;">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-right: 4px;"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
@@ -501,7 +617,11 @@
         "defaultMsg": "您好，我想详细了解这款机器...",
         "productMsgPrefix": "您好，我想详细了解这款",
         "productMsgSuffix": "机器...",
-        "noFeatures": "暂无特殊说明", "noSpecs": "暂无详细技术参数"
+        "noFeatures": "暂无特殊说明", "noSpecs": "暂无详细技术参数",
+        "slide1": "金超智造园区",
+        "slide2": "现代化生产车间",
+        "slide3": "精工装配与调试",
+        "slide4": "设备与样板展厅"
       },
       "en": {
         "topbarLeft": "Welcome to Jinchao Seamless Machinery Co., Ltd.", "topbarRight": "Heat Press · Glue Dispensing · Custom Solutions",
@@ -523,7 +643,11 @@
         "defaultMsg": "Hello, I would like to know more about your machines...",
         "productMsgPrefix": "Hello, I would like to know more about the ",
         "productMsgSuffix": " machine...",
-        "noFeatures": "No special description available.", "noSpecs": "No detailed specifications available."
+        "noFeatures": "No special description available.", "noSpecs": "No detailed specifications available.",
+        "slide1": "J&C Industrial Park",
+        "slide2": "Modern Workshop",
+        "slide3": "Assembly & Testing",
+        "slide4": "Showroom & Samples"
       }
     };
 
@@ -1059,6 +1183,78 @@
       requestAnimationFrame(animateGlitch);
     }
     animateGlitch();
+
+    // =========================================================
+    // 首页巨幕轮播图：3D 层叠滑动 + 指定悬停跳转
+    // =========================================================
+    const sliderBox = document.getElementById('mainSlider');
+    const slidesElements = document.querySelectorAll('#mainSlider .slide');
+    let currentIdx = 0;
+    let slideInterval;
+
+    function updateSlides() {
+      slidesElements.forEach((slide, index) => {
+        slide.className = 'slide'; // 先清除所有状态
+        
+        // 计算当前卡片相对于 active 卡片的位置
+        let diff = (index - currentIdx + slidesElements.length) % slidesElements.length;
+
+        if (diff === 0) {
+          slide.classList.add('active'); // 正在展示的
+        } else if (diff === 1) {
+          slide.classList.add('next'); // 垫在背后的
+        } else if (diff === 2) {
+          slide.classList.add('next-next'); // 垫在最深处的
+        } else {
+          slide.classList.add('prev'); // 飞走消失的
+        }
+      });
+    }
+
+    function nextSlide() {
+      if (slidesElements.length <= 1) return;
+      currentIdx = (currentIdx + 1) % slidesElements.length;
+      updateSlides();
+    }
+
+    function startSlide() {
+      if(slideInterval) clearInterval(slideInterval);
+      slideInterval = setInterval(nextSlide, 3000); // 3秒自动翻页一次
+    }
+
+    function stopSlide() {
+      clearInterval(slideInterval);
+    }
+
+    if (sliderBox && slidesElements.length > 1) {
+      updateSlides(); // 初始化第一张
+      startSlide();
+
+      // 当鼠标离开整个轮播区域时，恢复自动播放
+      sliderBox.addEventListener('mouseleave', startSlide);
+
+      // 给每一张卡片单独绑定事件
+      slidesElements.forEach((slide, index) => {
+        // 鼠标只要放上去，这张卡片就立刻弹到最前面
+        slide.addEventListener('mouseenter', () => {
+          stopSlide(); // 暂停自动播放
+          if (currentIdx !== index) {
+            currentIdx = index; // 把鼠标悬停的这张设为当前 active
+            updateSlides();
+          }
+        });
+        
+        // 兼容手机端点击
+        slide.addEventListener('click', () => {
+          stopSlide();
+          if (currentIdx !== index) {
+            currentIdx = index;
+            updateSlides();
+          }
+          startSlide();
+        });
+      });
+    }
   </script>
 </body>
 </html>
