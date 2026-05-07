@@ -252,12 +252,12 @@
     .fab { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: white; transition: 0.3s; cursor: pointer; }
     .fab svg { width: 28px; height: 28px; fill: white;}
     
-    .fab.wa { background: var(--wa-color); animation: pulse-wa 2s infinite; }
-    .fab.tg { background: var(--tg-color); animation: pulse-tg 2s infinite; animation-delay: 0.6s; }
-    .fab.em { background: var(--blue); animation: pulse-em 2s infinite; animation-delay: 1.2s; }
+    /* === 治愈强迫症：使用负数延迟，实现装载即完美的流水呼吸灯节奏 === */
+    .fab.wc { background: var(--wc-color); animation: pulse-wc 2.4s infinite; animation-delay: 0s; }
+    .fab.wa { background: var(--wa-color); animation: pulse-wa 2.4s infinite; animation-delay: -1.8s; }
+    .fab.tg { background: var(--tg-color); animation: pulse-tg 2.4s infinite; animation-delay: -1.2s; }
+    .fab.em { background: var(--blue); animation: pulse-em 2.4s infinite; animation-delay: -0.6s; }
     
-    /* 微信悬浮按钮 */
-    .fab.wc { background: var(--wc-color); animation: pulse-wc 2s infinite; animation-delay: 0.3s; }
     /* 微信悬浮二维码弹框 */
     .fab-qr-popup {
       position: absolute; right: 74px; bottom: 0; width: 160px; background: #ffffff; padding: 12px; border-radius: 16px;
@@ -273,10 +273,10 @@
     .fab-wrapper:hover .fab { transform: scale(1.1); animation-play-state: paused; }
     .fab:hover { transform: scale(1.1) translateY(-4px); animation-play-state: paused; }
 
+    @keyframes pulse-wc { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(7, 193, 96, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(7, 193, 96, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(7, 193, 96, 0); } }
     @keyframes pulse-wa { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 211, 102, 0); } }
     @keyframes pulse-tg { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(0, 136, 204, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(0, 136, 204, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(0, 136, 204, 0); } }
     @keyframes pulse-em { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 99, 235, 0); } }
-    @keyframes pulse-wc { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(7, 193, 96, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(7, 193, 96, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(7, 193, 96, 0); } }
 
     .giant-brand-footer { width: 100%; height: 45vw; background: var(--blue); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; cursor: crosshair; }
     .giant-text { font-size: 45vw; font-weight: 900; color: var(--blue-dark); line-height: 0.8; letter-spacing: -1vw; text-transform: uppercase; user-select: none; white-space: nowrap; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); margin: 0; padding: 0; }
@@ -445,6 +445,16 @@
           <a class="contact-row js-whatsapp" href="#" target="_blank">
             <div class="contact-icon" style="color:var(--wa-color); background: #dcf8c6;">
               <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div class="contact-row-text">
+              <strong data-i18n="whatsapp">WhatsApp 极速响应</strong>
+              <span>+86 173 7615 9927</span>
+            </div>
+          </a>
+
+          <a class="contact-row js-telegram" href="#" target="_blank">
+            <div class="contact-icon" style="color:var(--tg-color); background: #cce7f5;">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.548.223l.188-2.85 5.18-4.686c.223-.195-.054-.285-.346-.094L7.466 14.1l-2.76-.856c-.6-.183-.61-.594.126-.884l10.79-4.16c.5-.183.945.105.812.87z"/></svg>
             </div>
             <div class="contact-row-text">
               <strong data-i18n="telegram">Telegram 在线支持</strong>
@@ -616,7 +626,7 @@
         "featuredLabel": "Featured Machines", "featuredTitle": "Top Export Models", "featuredDesc": "Highly reliable and easy-to-operate machines trusted by global buyers.",
         "productsLabel": "Equipment Center", "productsTitle": "Complete Catalog", "productsDesc": "Search by keyword or filter by category to find the right machine for your production line.",
         "searchPlaceholder": "Search model or keyword, e.g., 350, Dispenser", "searchBtn": "Search", "detail": "Parameters", "empty": "No machines found. Please try another keyword.",
-        "contactLabel": "CONTACT & INQUquiry", "contactTitle": "Get Specifications & Quotes", "contactDesc": "Whether you need a single machine or a complete factory setup, please contact our sales engineers directly. We support English communication and video factory tours.",
+        "contactLabel": "CONTACT & INQUIRY", "contactTitle": "Get Specifications & Quotes", "contactDesc": "Whether you need a single machine or a complete factory setup, please contact our sales engineers directly. We support English communication and video factory tours.",
         "phone": "Phone Numbers", "whatsapp": "WhatsApp (Fast Reply)", "telegram": "Telegram Support", "email": "Official Email",
         "contactWa": "WhatsApp Chat", "contactTg": "Telegram Chat", "contactEm": "Send Email",
         "contactWc": "WeChat Chat",
@@ -1109,7 +1119,7 @@
       }
     }
 
-    // === 【新增】实时搜索逻辑：每次输入时立刻触发搜索 ===
+    // === 实时搜索逻辑：每次输入时立刻触发搜索 ===
     searchInput.addEventListener("input", renderProducts);
     
     // 依然保留回车和点击按钮的事件以防万一
