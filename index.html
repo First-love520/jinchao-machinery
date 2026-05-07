@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jinchao Seamless Machinery | 金超无缝机械有限公司 - 产品中心</title>
+  <title>金超无缝机械有限公司 - 产品中心</title>
   <meta name="description" content="金超无缝机械有限公司(Jinchao Machinery)专业生产无缝内衣点胶机、热压机、超声波熔贴机及折边机。提供全套无缝成衣加工解决方案，支持全球出口与定制。" />
   <style>
     :root {
@@ -19,6 +19,7 @@
       --tg-color: #0088cc;
       --light-blue: #0ea5e9;
       --yt-color: #ff0000;
+      --wc-color: #07c160; /* 微信专属绿 */
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -83,7 +84,7 @@
     .hero-desc { font-size: 17px; color: var(--muted); margin-bottom: 40px; line-height: 1.7; max-width: 600px;}
     .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 48px;}
 
-    /* === 3D 层叠悬停交互卡片特效 (Hover Stack Carousel) === */
+    /* === 3D 层叠悬停交互卡片特效 === */
     .showcase-card.stack-style {
       border-radius: 32px;
       background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
@@ -96,17 +97,15 @@
       justify-content: center;
       overflow: hidden;
     }
-
     .hero-slider {
       position: relative;
       width: 100%;
       height: 100%;
-      perspective: 1200px; /* 增加3D透视纵深 */
+      perspective: 1200px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-
     .hero-slider .slide {
       position: absolute;
       width: 65%;
@@ -114,22 +113,15 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* 丝滑弹射动画 */
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); 
       opacity: 0;
-      transform: translateX(40%) scale(0.7) rotate(15deg); /* 默认隐藏在右侧深处 */
+      transform: translateX(40%) scale(0.7) rotate(15deg); 
       z-index: 0;
       border: 4px solid #ffffff; 
       cursor: pointer;
-      pointer-events: none; /* 默认不可点击 */
+      pointer-events: none; 
     }
-
-    .hero-slider .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* 悬浮黑色半透明标签 */
+    .hero-slider .slide img { width: 100%; height: 100%; object-fit: cover; }
     .slide-label {
       position: absolute;
       bottom: 20px;
@@ -148,46 +140,12 @@
       transition: opacity 0.4s ease;
       letter-spacing: 0.5px;
     }
-
-    /* --- 轮播核心层次逻辑 --- */
-    
-    /* 第一张：正前方最高层 */
-    .hero-slider .slide.active {
-      opacity: 1;
-      transform: translateX(-15%) scale(1) rotate(-3deg);
-      z-index: 3;
-      box-shadow: 0 25px 50px -12px rgba(37,99,235,0.3);
-      pointer-events: auto; /* 允许交互 */
-    }
+    .hero-slider .slide.active { opacity: 1; transform: translateX(-15%) scale(1) rotate(-3deg); z-index: 3; box-shadow: 0 25px 50px -12px rgba(37,99,235,0.3); pointer-events: auto; }
     .hero-slider .slide.active .slide-label { opacity: 1; }
-
-    /* 第二张：右侧露出一点，引导鼠标放上去 */
-    .hero-slider .slide.next {
-      opacity: 0.85;
-      transform: translateX(12%) scale(0.9) rotate(4deg);
-      z-index: 2;
-      pointer-events: auto; /* 允许悬停交互 */
-    }
-    .hero-slider .slide.next:hover {
-      transform: translateX(15%) scale(0.92) rotate(2deg); /* 微微浮动提示可点击 */
-      opacity: 0.95;
-    }
-
-    /* 第三张：更深处待命 */
-    .hero-slider .slide.next-next {
-      opacity: 0.4;
-      transform: translateX(35%) scale(0.8) rotate(10deg);
-      z-index: 1;
-      pointer-events: auto; /* 允许跨级悬停 */
-    }
-
-    /* 上一张：向左上方飞出消失 */
-    .hero-slider .slide.prev {
-      opacity: 0;
-      transform: translate(-50%, -20%) scale(1.1) rotate(-15deg);
-      z-index: 4;
-      pointer-events: none;
-    }
+    .hero-slider .slide.next { opacity: 0.85; transform: translateX(12%) scale(0.9) rotate(4deg); z-index: 2; pointer-events: auto; }
+    .hero-slider .slide.next:hover { transform: translateX(15%) scale(0.92) rotate(2deg); opacity: 0.95; }
+    .hero-slider .slide.next-next { opacity: 0.4; transform: translateX(35%) scale(0.8) rotate(10deg); z-index: 1; pointer-events: auto; }
+    .hero-slider .slide.prev { opacity: 0; transform: translate(-50%, -20%) scale(1.1) rotate(-15deg); z-index: 4; pointer-events: none; }
 
     /* --- 产品中心 --- */
     section { padding: 96px 0; }
@@ -199,12 +157,10 @@
     .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
     .product-card { overflow: hidden; border-radius: 28px; border: 1px solid var(--blue-line); background: #ffffff; transition: 0.3s; display: flex; flex-direction: column; cursor: pointer; position: relative;}
     .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: rgba(37,99,235,0.2);}
-    
     .product-image { position: relative; aspect-ratio: 4/3; background: #f8fafc; border-bottom: 1px solid var(--blue-line); padding: 20px; display: grid; place-items: center; transition: 0.5s; overflow: hidden;}
     .product-card:hover .product-image img { transform: scale(1.05); }
     .product-image img { width: 100%; height: 100%; object-fit: contain; transition: 0.5s; }
     
-    /* 视频播放小标签/图标样式 */
     .play-icon-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 56px; height: 56px; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); border-radius: 50%; display: grid; place-items: center; color: white; opacity: 0.85; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 10; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     .play-icon-badge svg { width: 26px; height: 26px; fill: currentColor; margin-left: 4px; }
     .product-card:hover .play-icon-badge { background: var(--yt-color); transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
@@ -235,56 +191,31 @@
     .contact-box { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
     .contact-card { background: #ffffff; padding: 40px; border-radius: 32px; box-shadow: 0 24px 60px -10px rgba(0,0,0,0.08); position: relative;}
     .contact-card::before { content: ''; position: absolute; inset: -1px; border-radius: 33px; z-index: -1; background: linear-gradient(135deg, rgba(37,99,235,0.2) 0%, transparent 100%); }
-    .contact-row { display: flex; align-items: center; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--blue-line); transition: 0.3s; }
+    .contact-row { display: flex; align-items: center; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--blue-line); cursor: pointer; transition: 0.3s; }
     .contact-row:hover { transform: translateX(8px); }
     .contact-icon { width: 52px; height: 52px; flex: none; display: grid; place-items: center; border-radius: 16px; background: var(--blue-soft); color: var(--blue); }
     .contact-icon svg { width: 24px; height: 24px; fill: currentColor; }
     .contact-row-text strong { display: block; color: var(--blue-dark); font-size: 17px; font-weight: 800; margin-bottom: 4px; }
     .contact-row-text span { color: var(--muted); font-size: 14px; display: block; margin-top: 2px;}
-    .contact-action-group { display: flex; gap: 12px; margin-top: 32px; padding-top: 12px;}
-    .contact-action-group .btn { flex: 1; padding: 14px 0; font-size: 14px; border-radius: 14px; }
+    .contact-action-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; padding-top: 12px;}
+    .contact-action-group .btn { flex: 1; min-width: 120px; padding: 14px 0; font-size: 14px; border-radius: 14px; }
 
-    /* --- 弹窗及 YouTube 视频集成 --- */
+    /* --- 弹窗统一样式 --- */
     .modal { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); }
     .modal.show { display: flex; }
-    
-    .modal-card { 
-      width: min(1180px, 95vw); 
-      height: 90vh; 
-      display: flex; 
-      flex-direction: column; 
-      overflow: hidden; 
-      border-radius: 32px; 
-      background: #ffffff; 
-      box-shadow: 0 32px 96px rgba(0,0,0,0.3); 
-      animation: pop 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-    }
-    
-    .modal-head { 
-      flex: none;
-      display: flex; justify-content: space-between; align-items: center; 
-      padding: 24px 32px; border-bottom: 1px solid var(--blue-line); 
-      background: #fff; z-index: 10;
-    }
+    .modal-card { width: min(1180px, 95vw); height: 90vh; display: flex; flex-direction: column; overflow: hidden; border-radius: 32px; background: #ffffff; box-shadow: 0 32px 96px rgba(0,0,0,0.3); animation: pop 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .modal-head { flex: none; display: flex; justify-content: space-between; align-items: center; padding: 24px 32px; border-bottom: 1px solid var(--blue-line); background: #fff; z-index: 10; }
     .modal-head h3 { font-size: 22px; font-weight: 900; color: var(--blue-dark); line-height: 1.2; }
     
     .close-btn { width: 40px; height: 40px; flex: none; border: 0; border-radius: 50%; background: var(--blue-soft); color: var(--blue); cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
     .close-btn:hover { background: var(--blue-line); }
     .close-btn svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
 
-    .modal-content { 
-      display: grid; 
-      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); 
-      gap: 40px; padding: 40px; 
-      height: 100%;
-      overflow: hidden; 
-    }
-    
+    .modal-content { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 40px; padding: 40px; height: 100%; overflow: hidden; }
     .modal-left { display: flex; flex-direction: column; gap: 24px; }
     .modal-image { border-radius: 24px; background: #f8fafc; border: 1px solid var(--blue-line); padding: 20px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;}
     .modal-image img { width: 100%; height: 100%; object-fit: contain; }
     
-    /* 移除视频模式下的边框和内边距，让视频填满 */
     .modal-image.is-video { background: #000; padding: 0; border: none; border-radius: 24px; aspect-ratio: 16/9;}
     .video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     .video-wrapper iframe { width: 100%; height: 100%; border: 0; }
@@ -293,26 +224,19 @@
     .modal-actions .btn { font-size: 14px; padding: 12px 0; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
     .modal-actions .btn svg { width: 18px; height: 18px; fill: currentColor; flex: none; }
 
-    .modal-right { 
-      overflow-y: auto; 
-      padding-right: 16px; 
-      padding-bottom: 40px; 
-    }
+    .modal-right { overflow-y: auto; padding-right: 16px; padding-bottom: 40px; }
     .modal-right::-webkit-scrollbar { width: 6px; }
     .modal-right::-webkit-scrollbar-track { background: transparent; }
     .modal-right::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     .modal-right::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
     .detail-copy { color: var(--muted); margin-top: 16px; line-height: 1.7;}
-    
     .specs-section { margin-top: 32px; }
     .specs-section h4 { color: var(--blue-dark); font-size: 16px; font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
     .specs-section h4::before { content: ""; display: block; width: 4px; height: 16px; background: var(--blue); border-radius: 4px; }
-
     .features-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
     .features-list li { position: relative; padding-left: 20px; color: var(--text); font-size: 14px; line-height: 1.6; }
     .features-list li::before { content: "•"; position: absolute; left: 4px; color: var(--blue); font-weight: 900; font-size: 18px; line-height: 1; top: 0px;}
-
     .specs-table { width: 100%; border-collapse: collapse; font-size: 14px; }
     .specs-table th, .specs-table td { padding: 12px 0; border-bottom: 1px solid var(--blue-line); text-align: left; vertical-align: top;}
     .specs-table th { color: var(--muted); font-weight: 500; width: 35%; padding-right: 16px;}
@@ -322,18 +246,37 @@
 
     footer { padding: 32px 0; text-align: center; color: var(--muted); font-size: 13px; border-top: 1px solid var(--blue-line); background: #fff;}
 
-    /* --- 波浪呼吸灯特效 --- */
-    @keyframes pulse-wa { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 211, 102, 0); } }
-    @keyframes pulse-tg { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(0, 136, 204, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(0, 136, 204, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(0, 136, 204, 0); } }
-    @keyframes pulse-em { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 99, 235, 0); } }
-
+    /* --- 悬浮按钮 (FAB) 及 微信专属二维码滑出特效 --- */
     .fab-container { position: fixed; right: 32px; bottom: 32px; display: flex; flex-direction: column; gap: 16px; z-index: 999; }
-    .fab { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: white; transition: 0.3s; }
+    .fab-wrapper { position: relative; display: flex; align-items: center; justify-content: flex-end; }
+    .fab { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: white; transition: 0.3s; cursor: pointer; }
     .fab svg { width: 28px; height: 28px; fill: white;}
+    
     .fab.wa { background: var(--wa-color); animation: pulse-wa 2s infinite; }
     .fab.tg { background: var(--tg-color); animation: pulse-tg 2s infinite; animation-delay: 0.6s; }
     .fab.em { background: var(--blue); animation: pulse-em 2s infinite; animation-delay: 1.2s; }
+    
+    /* 微信悬浮按钮 */
+    .fab.wc { background: var(--wc-color); animation: pulse-wc 2s infinite; animation-delay: 0.3s; }
+    /* 微信悬浮二维码弹框 */
+    .fab-qr-popup {
+      position: absolute; right: 74px; bottom: 0; width: 160px; background: #ffffff; padding: 12px; border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15); opacity: 0; visibility: hidden; transform: translateX(15px) scale(0.95);
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: right bottom; z-index: 1000; text-align: center;
+    }
+    .fab-wrapper:hover .fab-qr-popup { opacity: 1; visibility: visible; transform: translateX(0) scale(1); }
+    .fab-qr-popup img { width: 100%; border-radius: 8px; display: block; margin-bottom: 8px; border: 1px solid var(--blue-line);}
+    .fab-qr-popup span { font-size: 13px; font-weight: 700; color: var(--blue-dark); display: block;}
+    /* 弹框右侧小三角 */
+    .fab-qr-popup::after { content: ''; position: absolute; right: -6px; bottom: 22px; width: 12px; height: 12px; background: #fff; transform: rotate(45deg); border-radius: 2px; }
+
+    .fab-wrapper:hover .fab { transform: scale(1.1); animation-play-state: paused; }
     .fab:hover { transform: scale(1.1) translateY(-4px); animation-play-state: paused; }
+
+    @keyframes pulse-wa { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 211, 102, 0); } }
+    @keyframes pulse-tg { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(0, 136, 204, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(0, 136, 204, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(0, 136, 204, 0); } }
+    @keyframes pulse-em { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 99, 235, 0); } }
+    @keyframes pulse-wc { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(7, 193, 96, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(7, 193, 96, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(7, 193, 96, 0); } }
 
     .giant-brand-footer { width: 100%; height: 45vw; background: var(--blue); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; cursor: crosshair; }
     .giant-text { font-size: 45vw; font-weight: 900; color: var(--blue-dark); line-height: 0.8; letter-spacing: -1vw; text-transform: uppercase; user-select: none; white-space: nowrap; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); margin: 0; padding: 0; }
@@ -365,6 +308,7 @@
       .giant-brand-footer { height: 80vw; }
       .giant-text { font-size: 80vw; }
       .showcase-card.stack-style { aspect-ratio: auto; height: 450px; }
+      .fab-qr-popup { display: none; } /* 手机端不悬浮出二维码，依靠点击弹窗更直观 */
     }
   </style>
 </head>
@@ -432,7 +376,7 @@
             </div>
           </div>
         </div>
-        </div>
+      </div>
     </section>
 
     <section id="featured" style="background: #f8fafc;">
@@ -469,7 +413,7 @@
     <section id="contact" class="contact">
       <div class="container contact-box">
         <div class="contact-text">
-          <div class="section-label" data-i18n="contactLabel">CONTACT & INQUIRY</div>
+          <div class="section-label" data-i18n="contactLabel">联系与咨询</div>
           <h2 data-i18n="contactTitle">欢迎咨询参数与获取报价</h2>
           <p data-i18n="contactDesc">无论您是对单台设备感兴趣，还是需要整厂出海方案，请通过下方方式直接与我们的销售工程师取得联系。我们支持全英文对接与视频验厂。</p>
         </div>
@@ -485,19 +429,22 @@
             </div>
           </a>
 
-          <a class="contact-row js-whatsapp" href="#" target="_blank">
-            <div class="contact-icon" style="color:var(--wa-color); background: #dcf8c6;">
-              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <a class="contact-row" onclick="openWechatModal()">
+            <div class="contact-icon" style="color:var(--wc-color); background: #e6f7ec;">
+              <svg viewBox="0 0 1024 1024" fill="currentColor">
+                <path d="M336 640c-154.6 0-280-107.5-280-240S181.4 160 336 160s280 107.5 280 240-125.4 240-280 240zm-64-280c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
+                <path d="M720 864c-123.7 0-224-86-224-192s100.3-192 224-192 224 86 224 192-100.3 192-224 192zm-48-224c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm96 0c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/>
+              </svg>
             </div>
             <div class="contact-row-text">
-              <strong data-i18n="whatsapp">WhatsApp 极速响应</strong>
-              <span>+86 173 7615 9927</span>
+              <strong data-i18n="wechatTitle">微信客服</strong>
+              <span data-i18n="wechatDesc">扫码添加微信获取报价</span>
             </div>
           </a>
 
-          <a class="contact-row js-telegram" href="#" target="_blank">
-            <div class="contact-icon" style="color:var(--tg-color); background: #cce7f5;">
-              <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.548.223l.188-2.85 5.18-4.686c.223-.195-.054-.285-.346-.094L7.466 14.1l-2.76-.856c-.6-.183-.61-.594.126-.884l10.79-4.16c.5-.183.945.105.812.87z"/></svg>
+          <a class="contact-row js-whatsapp" href="#" target="_blank">
+            <div class="contact-icon" style="color:var(--wa-color); background: #dcf8c6;">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </div>
             <div class="contact-row-text">
               <strong data-i18n="telegram">Telegram 在线支持</strong>
@@ -516,6 +463,7 @@
           </a>
           
           <div class="contact-action-group">
+            <a class="btn" style="background:var(--wc-color); color:#fff;" onclick="openWechatModal()" data-i18n="contactWc">微信沟通</a>
             <a class="btn btn-wa js-whatsapp" href="#" target="_blank" data-i18n="contactWa">WhatsApp 沟通</a>
             <a class="btn btn-tg js-telegram" href="#" target="_blank" data-i18n="contactTg">Telegram 沟通</a>
             <a class="btn btn-em js-email" href="#" data-i18n="contactEm">发送邮件</a>
@@ -526,6 +474,23 @@
   </main>
 
   <footer data-i18n="footer">© 2026 金超无缝机械有限公司. All Rights Reserved.</footer>
+
+  <div id="wechatModal" class="modal">
+    <div class="modal-card" style="width: 340px; height: auto; padding: 40px 32px; align-items: center; text-align: center; position: relative;">
+      <button class="close-btn" onclick="closeWechatModal()" style="position: absolute; top: 16px; right: 16px;">
+        <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div style="color: var(--wc-color); margin-bottom: 16px;">
+        <svg viewBox="0 0 1024 1024" fill="currentColor" style="width:56px; height:56px;">
+          <path d="M336 640c-154.6 0-280-107.5-280-240S181.4 160 336 160s280 107.5 280 240-125.4 240-280 240zm-64-280c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
+          <path d="M720 864c-123.7 0-224-86-224-192s100.3-192 224-192 224 86 224 192-100.3 192-224 192zm-48-224c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm96 0c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/>
+        </svg>
+      </div>
+      <h3 data-i18n="wechatScan" style="margin-bottom: 24px; color: var(--blue-dark); font-size: 20px; font-weight: 800;">打开微信扫一扫</h3>
+      <img src="images/wechat-qr.jpg" alt="WeChat QR Code" style="width: 100%; max-width: 240px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); margin: 0 auto; border: 1px solid var(--blue-line);">
+      <p style="margin-top: 24px; font-size: 15px; color: var(--muted); font-weight: 600;" data-i18n="wechatId">微信号: 133 4268 8022</p>
+    </div>
+  </div>
 
   <div id="productModal" class="modal">
     <div class="modal-card">
@@ -578,6 +543,18 @@
   </div>
 
   <div class="fab-container">
+    <div class="fab-wrapper">
+      <div class="fab-qr-popup">
+        <img src="images/wechat-qr.jpg" alt="WeChat QR Code">
+        <span data-i18n="wechatScanMini">扫一扫加好友</span>
+      </div>
+      <a href="javascript:void(0)" class="fab wc" onclick="openWechatModal()" title="WeChat">
+        <svg viewBox="0 0 1024 1024" fill="currentColor">
+          <path d="M336 640c-154.6 0-280-107.5-280-240S181.4 160 336 160s280 107.5 280 240-125.4 240-280 240zm-64-280c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 0c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
+          <path d="M720 864c-123.7 0-224-86-224-192s100.3-192 224-192 224 86 224 192-100.3 192-224 192zm-48-224c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm96 0c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/>
+        </svg>
+      </a>
+    </div>
     <a href="#" target="_blank" class="fab wa js-whatsapp" title="WhatsApp">
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
@@ -598,6 +575,7 @@
 
     const UI = {
       "zh": {
+        "pageTitle": "金超无缝机械有限公司 - 产品中心",
         "topbarLeft": "欢迎访问金超无缝机械有限公司官方网站", "topbarRight": "专注无缝设备 · 热压贴胶 · 点胶复合 · 定制服务",
         "navHome": "首页", "navFeatured": "精选设备", "navProducts": "产品展示", "navContact": "联系我们",
         "quote": "获取报价", "company": "金超无缝机械有限公司",
@@ -608,9 +586,10 @@
         "featuredLabel": "Featured Machines", "featuredTitle": "精选主打设备", "featuredDesc": "高销量出口机型，性能稳定，操作简便，备受海内外采购商信赖。",
         "productsLabel": "Equipment Center", "productsTitle": "完整产品目录", "productsDesc": "您可以通过关键词搜索或工艺分类，快速查找适合您工厂的无缝加工设备。",
         "searchPlaceholder": "搜索型号或关键词，如：350、点胶机、热压", "searchBtn": "搜索", "detail": "查看参数", "empty": "未找到相关设备，请尝试其他关键词。",
-        "contactLabel": "Contact Us", "contactTitle": "欢迎咨询参数与获取报价", "contactDesc": "无论您是对单台设备感兴趣，还是需要整厂出海方案，请通过下方方式直接与我们的销售工程师取得联系。我们支持全英文对接与视频验厂。",
+        "contactLabel": "联系与咨询", "contactTitle": "欢迎咨询参数与获取报价", "contactDesc": "无论您是对单台设备感兴趣，还是需要整厂出海方案，请通过下方方式直接与我们的销售工程师取得联系。我们支持全英文对接与视频验厂。",
         "phone": "联系电话", "whatsapp": "WhatsApp 极速响应", "telegram": "Telegram 在线支持", "email": "官方电子邮件",
         "contactWa": "WhatsApp 沟通", "contactTg": "Telegram 沟通", "contactEm": "发送邮件",
+        "contactWc": "微信沟通",
         "modalFeaturesTitle": "机器特性", "modalSpecsTitle": "技术参数",
         "modalPhone": "电话联系", "modalEmail": "发送邮件",
         "watchYoutube": "在 YouTube 上观看",
@@ -621,9 +600,12 @@
         "slide1": "金超智造园区",
         "slide2": "现代化生产车间",
         "slide3": "精工装配与调试",
-        "slide4": "设备与样板展厅"
+        "slide4": "设备与样板展厅",
+        "wechatTitle": "微信客服", "wechatDesc": "扫码添加微信获取报价",
+        "wechatScan": "打开微信扫一扫", "wechatId": "微信号: 133 4268 8022", "wechatScanMini": "扫码加微信"
       },
       "en": {
+        "pageTitle": "Jinchao Seamless Machinery - Product Center",
         "topbarLeft": "Welcome to Jinchao Seamless Machinery Co., Ltd.", "topbarRight": "Heat Press · Glue Dispensing · Custom Solutions",
         "navHome": "Home", "navFeatured": "Featured", "navProducts": "Machines", "navContact": "Contact",
         "quote": "Get Quote", "company": "Jinchao Seamless Machinery Co., Ltd.",
@@ -634,9 +616,10 @@
         "featuredLabel": "Featured Machines", "featuredTitle": "Top Export Models", "featuredDesc": "Highly reliable and easy-to-operate machines trusted by global buyers.",
         "productsLabel": "Equipment Center", "productsTitle": "Complete Catalog", "productsDesc": "Search by keyword or filter by category to find the right machine for your production line.",
         "searchPlaceholder": "Search model or keyword, e.g., 350, Dispenser", "searchBtn": "Search", "detail": "Parameters", "empty": "No machines found. Please try another keyword.",
-        "contactLabel": "Contact Us", "contactTitle": "Get Specifications & Quotes", "contactDesc": "Whether you need a single machine or a complete factory setup, please contact our sales engineers directly. We support English communication and video factory tours.",
+        "contactLabel": "CONTACT & INQUquiry", "contactTitle": "Get Specifications & Quotes", "contactDesc": "Whether you need a single machine or a complete factory setup, please contact our sales engineers directly. We support English communication and video factory tours.",
         "phone": "Phone Numbers", "whatsapp": "WhatsApp (Fast Reply)", "telegram": "Telegram Support", "email": "Official Email",
         "contactWa": "WhatsApp Chat", "contactTg": "Telegram Chat", "contactEm": "Send Email",
+        "contactWc": "WeChat Chat",
         "modalFeaturesTitle": "Machine Features", "modalSpecsTitle": "Technical Specifications",
         "modalPhone": "Call Us", "modalEmail": "Send Email",
         "watchYoutube": "Watch on YouTube",
@@ -647,13 +630,14 @@
         "slide1": "J&C Industrial Park",
         "slide2": "Modern Workshop",
         "slide3": "Assembly & Testing",
-        "slide4": "Showroom & Samples"
+        "slide4": "Showroom & Samples",
+        "wechatTitle": "WeChat", "wechatDesc": "Scan QR Code for Quote",
+        "wechatScan": "Scan to add WeChat", "wechatId": "WeChat ID: 133 4268 8022", "wechatScanMini": "Scan QR Code"
       }
     };
 
     const categories = [{"key": "all", "zh": "全部设备", "en": "All Machines"}, {"key": "hotPress", "zh": "热压机系列", "en": "Heat Press"}, {"key": "glueDispensing", "zh": "点胶机系列", "en": "Glue Dispenser"}, {"key": "heatSealing", "zh": "热风贴胶系列", "en": "Hot Air Taping"}, {"key": "binding", "zh": "包边套贴系列", "en": "Binding & Folding"}, {"key": "brushing", "zh": "刷胶复合系列", "en": "Glue Brushing"}, {"key": "splicing", "zh": "驳接补胶系列", "en": "Splicing"}, {"key": "waistband", "zh": "腰头设备系列", "en": "Waistband"}];
     
-    // 增加了一个真实的 JC-722S 视频以作演示 
     const products = [
       { 
         "id": 1, "code": "JC-350", "nameZh": "JC-350 侧缝双工位热压机", "nameEn": "JC-350 Double-Station Heat Press", "category": "hotPress", 
@@ -678,7 +662,7 @@
       { 
         "id": 3, "code": "JC-722S", "nameZh": "JC-722S 视觉点胶机", "nameEn": "JC-722S Vision Glue Dispenser", "category": "glueDispensing", 
         "image": "images/722s-visual-glue-machine.jpg",
-        "youtubeId": "tKUm3IKd9Pk", /* <-- 真实的 YouTube 视频 ID 演示 */
+        "youtubeId": "tKUm3IKd9Pk",
         "descZh": "高清双摄像头视觉定位，支持 PUR 胶水点胶，杜绝拉丝现象。", 
         "descEn": "Dual camera vision positioning, supports PUR glue, prevents stringing.",
         "featuresZh": ["搭载高清双摄像头与高均度背光源，视觉定位极速精准", "支持 PUR 胶水及热熔胶点胶，点胶路径平滑顺畅", "料阀气压分别独立调节，杜绝拉丝现象", "有效行程：1080*700*2 (双工位)"],
@@ -1092,9 +1076,23 @@
       currentProduct = null;
     }
 
+    // ====== 微信弹窗逻辑 ======
+    function openWechatModal() {
+      document.getElementById("wechatModal").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closeWechatModal() {
+      document.getElementById("wechatModal").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
     function setLanguage(lang, manual = false) {
       currentLang = lang;
       document.documentElement.lang = currentLang === "zh" ? "zh-CN" : "en";
+      
+      // 更新网页标题
+      document.title = t("pageTitle");
+
       document.querySelectorAll("[data-i18n]").forEach(el => { el.innerHTML = t(el.getAttribute("data-i18n")); });
       document.querySelectorAll("[data-placeholder-i18n]").forEach(el => { el.placeholder = t(el.getAttribute("data-placeholder-i18n")); });
       document.getElementById("langZh").classList.toggle("active", currentLang === "zh");
@@ -1111,16 +1109,21 @@
       }
     }
 
+    // === 【新增】实时搜索逻辑：每次输入时立刻触发搜索 ===
+    searchInput.addEventListener("input", renderProducts);
+    
+    // 依然保留回车和点击按钮的事件以防万一
     searchBtn.addEventListener("click", renderProducts);
     searchInput.addEventListener("keypress", function(e) { if (e.key === "Enter") { e.preventDefault(); renderProducts(); } });
-    searchInput.addEventListener("input", function() { if (this.value.trim() === "") renderProducts(); });
+    
     document.getElementById("productModal").addEventListener("click", e => { if (e.target.id === "productModal") closeModal(); });
+    document.getElementById("wechatModal").addEventListener("click", e => { if (e.target.id === "wechatModal") closeWechatModal(); });
 
     const savedLang = localStorage.getItem("siteLang") || "zh";
     setLanguage(savedLang);
 
     // =========================================================
-    // 核心 JS：巨型底部 JC 标志特效 (Interactive Glitch Smear)
+    // 核心 JS：巨型底部 JC 标志特效
     // =========================================================
     const glitchFooter = document.getElementById('glitchFooter');
     const sliceCount = 60; 
@@ -1194,19 +1197,17 @@
 
     function updateSlides() {
       slidesElements.forEach((slide, index) => {
-        slide.className = 'slide'; // 先清除所有状态
-        
-        // 计算当前卡片相对于 active 卡片的位置
+        slide.className = 'slide';
         let diff = (index - currentIdx + slidesElements.length) % slidesElements.length;
 
         if (diff === 0) {
-          slide.classList.add('active'); // 正在展示的
+          slide.classList.add('active'); 
         } else if (diff === 1) {
-          slide.classList.add('next'); // 垫在背后的
+          slide.classList.add('next'); 
         } else if (diff === 2) {
-          slide.classList.add('next-next'); // 垫在最深处的
+          slide.classList.add('next-next'); 
         } else {
-          slide.classList.add('prev'); // 飞走消失的
+          slide.classList.add('prev'); 
         }
       });
     }
@@ -1219,7 +1220,7 @@
 
     function startSlide() {
       if(slideInterval) clearInterval(slideInterval);
-      slideInterval = setInterval(nextSlide, 3000); // 3秒自动翻页一次
+      slideInterval = setInterval(nextSlide, 3000); 
     }
 
     function stopSlide() {
@@ -1227,24 +1228,20 @@
     }
 
     if (sliderBox && slidesElements.length > 1) {
-      updateSlides(); // 初始化第一张
+      updateSlides(); 
       startSlide();
 
-      // 当鼠标离开整个轮播区域时，恢复自动播放
       sliderBox.addEventListener('mouseleave', startSlide);
 
-      // 给每一张卡片单独绑定事件
       slidesElements.forEach((slide, index) => {
-        // 鼠标只要放上去，这张卡片就立刻弹到最前面
         slide.addEventListener('mouseenter', () => {
-          stopSlide(); // 暂停自动播放
+          stopSlide(); 
           if (currentIdx !== index) {
-            currentIdx = index; // 把鼠标悬停的这张设为当前 active
+            currentIdx = index; 
             updateSlides();
           }
         });
         
-        // 兼容手机端点击
         slide.addEventListener('click', () => {
           stopSlide();
           if (currentIdx !== index) {
