@@ -6,14 +6,14 @@
   <title>无痕内衣设备厂家 | 点胶机 热压机 贴胶机 超声波熔贴机 | 金超无缝机械</title>
   <meta name="description" content="金超无缝机械专业生产无痕内衣设备、内裤点胶机、视觉点胶机、热压贴胶机、超声波熔贴机、腰头定位机和无缝贴合设备，支持出口定制、电压适配、视频验厂与整套生产方案。" />
   <meta name="keywords" content="无痕内衣设备,点胶机,内裤点胶机,视觉点胶机,热压机,贴胶机,超声波熔贴机,无缝内衣机器,seamless underwear machine,glue dispenser machine,heat press machine" />
-  <link rel="canonical" href="https://tulips.cc.cd/" />
+  <link rel="canonical" href="https://www.tulips.cc.cd/" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="金超无缝机械" />
   <meta property="og:title" content="无痕内衣设备厂家 | 点胶机 热压机 贴胶机 | 金超无缝机械" />
   <meta property="og:description" content="生产无痕内衣设备、内裤点胶机、热压贴胶机、超声波熔贴机、腰头定位机，支持全球出口与定制方案。" />
-  <meta property="og:url" content="https://tulips.cc.cd/" />
-  <meta property="og:image" content="https://tulips.cc.cd/images/722s-visual-glue-machine.jpg" />
+  <meta property="og:url" content="https://www.tulips.cc.cd/" />
+  <meta property="og:image" content="https://www.tulips.cc.cd/images/722s-visual-glue-machine.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <style>
     :root {
@@ -33,7 +33,7 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       color: var(--text);
@@ -210,7 +210,8 @@
     }
 
     .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-    .product-card { overflow: hidden; border-radius: 28px; border: 1px solid var(--blue-line); background: #ffffff; transition: 0.3s; display: flex; flex-direction: column; cursor: pointer; position: relative;}
+    .product-card {
+      scroll-margin-top: 120px; overflow: hidden; border-radius: 28px; border: 1px solid var(--blue-line); background: #ffffff; transition: 0.3s; display: flex; flex-direction: column; cursor: pointer; position: relative;}
     .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: rgba(37,99,235,0.2);}
     .product-image { position: relative; aspect-ratio: 4/3; background: #f8fafc; border-bottom: 1px solid var(--blue-line); padding: 20px; display: grid; place-items: center; transition: 0.5s; overflow: hidden;}
     .product-card:hover .product-image img { transform: scale(1.05); }
@@ -304,15 +305,17 @@
     /* --- 悬浮按钮 (FAB) 及 微信专属二维码滑出特效 --- */
     .fab-container { position: fixed; right: 32px; bottom: 32px; display: flex; flex-direction: column; gap: 16px; z-index: 999; }
     .fab-wrapper { position: relative; display: flex; align-items: center; justify-content: flex-end; }
-    .fab { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: white; transition: 0.3s; cursor: pointer; }
+    .fab { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: white; transition: 0.3s; cursor: pointer; position: relative; isolation: isolate; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
     .fab svg { width: 28px; height: 28px; fill: white;}
     
-    /* === 治愈强迫症：使用负数延迟，实现装载即完美的流水呼吸灯节奏 === */
-    .fab.wc { background: var(--wc-color); animation: pulse-wc 2.4s infinite; animation-delay: 0s; }
-    .fab.wa { background: var(--wa-color); animation: pulse-wa 2.4s infinite; animation-delay: -1.8s; }
-    .fab.tg { background: var(--tg-color); animation: pulse-tg 2.4s infinite; animation-delay: -1.2s; }
-    .fab.em { background: var(--blue); animation: pulse-em 2.4s infinite; animation-delay: -0.6s; }
-    
+    /* === 顺序呼吸灯：从上到下一个接一个亮，和产品页保持一致 === */
+    .fab::after { content: ""; position: absolute; inset: 0; border-radius: 50%; z-index: -1; background: rgba(var(--pulse-color), .48); opacity: 0; transform: scale(1); animation: sequentialPulse 3.2s linear infinite; animation-delay: var(--pulse-delay, 0s); }
+    .fab.wc { background: var(--wc-color); --pulse-color: 7, 193, 96; --pulse-delay: 0s; }
+    .fab.wa { background: var(--wa-color); --pulse-color: 37, 211, 102; --pulse-delay: .8s; }
+    .fab.tg { background: var(--tg-color); --pulse-color: 0, 136, 204; --pulse-delay: 1.6s; }
+    .fab.em { background: var(--blue); --pulse-color: 37, 99, 235; --pulse-delay: 2.4s; }
+    @keyframes sequentialPulse { 0% { opacity: .78; transform: scale(1); } 20% { opacity: .2; transform: scale(1.45); } 24.9% { opacity: 0; transform: scale(1.62); } 25%, 100% { opacity: 0; transform: scale(1.62); } }
+    .fab-container:hover .fab::after { animation-play-state: paused; }
     /* 微信悬浮二维码弹框 */
     .fab-qr-popup {
       position: absolute; right: 74px; bottom: 0; width: 160px; background: #ffffff; padding: 12px; border-radius: 16px;
@@ -327,13 +330,7 @@
 
     .fab-wrapper:hover .fab { transform: scale(1.1); animation-play-state: paused; }
     .fab:hover { transform: scale(1.1) translateY(-4px); animation-play-state: paused; }
-
-    @keyframes pulse-wc { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(7, 193, 96, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(7, 193, 96, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(7, 193, 96, 0); } }
-    @keyframes pulse-wa { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 211, 102, 0); } }
-    @keyframes pulse-tg { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(0, 136, 204, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(0, 136, 204, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(0, 136, 204, 0); } }
-    @keyframes pulse-em { 0% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 16px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(37, 99, 235, 0); } }
-
-    .giant-brand-footer { width: 100%; height: 45vw; background: var(--blue); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; cursor: crosshair; }
+.giant-brand-footer { width: 100%; height: 45vw; background: var(--blue); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; cursor: crosshair; }
     .giant-text { font-size: 45vw; font-weight: 900; color: var(--blue-dark); line-height: 0.8; letter-spacing: -1vw; text-transform: uppercase; user-select: none; white-space: nowrap; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); margin: 0; padding: 0; }
     .giant-text.base-text { opacity: 1; transition: opacity 0.3s; }
     .giant-brand-footer.is-hovering .giant-text.base-text { opacity: 0.2; }
@@ -1031,6 +1028,64 @@
     function productName(product) { return currentLang === "en" ? product.nameEn : product.nameZh; }
     function productDesc(product) { return currentLang === "en" ? product.descEn : product.descZh; }
 
+    function productSlug(product) {
+      return product.code.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    }
+
+    function openProductPage(productId, sourceSection = "catalog") {
+      const product = products.find(item => item.id === productId);
+      if (!product) return;
+      const safeSource = sourceSection === "featured" ? "featured" : "catalog";
+      const productHash = `${safeSource}-product-${product.code.toLowerCase()}`;
+      sessionStorage.setItem("returnScrollY", String(window.scrollY));
+      sessionStorage.setItem("returnProductHash", productHash);
+      sessionStorage.setItem("returningFromProduct", "1");
+
+      // 进入产品独立页前，把当前首页地址改成“本次点击的区域 + 产品锚点”。
+      // 这样无论是页面里的返回按钮，还是浏览器左上角返回键，都会回到刚才点击的那张卡片。
+      try {
+        history.replaceState(history.state, "", `#${productHash}`);
+      } catch (error) {}
+
+      window.location.href = `products/${productSlug(product)}.html?from=${encodeURIComponent(productHash)}`;
+    }
+
+    function restoreProductScroll() {
+      const storedHash = sessionStorage.getItem("returnProductHash") || "";
+      const hashFromUrl = location.hash ? location.hash.slice(1) : "";
+      const productHash = hashFromUrl || storedHash;
+      const shouldRestore =
+        sessionStorage.getItem("returningFromProduct") === "1" ||
+        /^(catalog|featured)-product-/i.test(hashFromUrl) || /^product-/i.test(hashFromUrl);
+
+      if (!shouldRestore || !productHash) return;
+
+      sessionStorage.removeItem("returningFromProduct");
+
+      const html = document.documentElement;
+      const oldInlineBehavior = html.style.scrollBehavior;
+      html.style.scrollBehavior = "auto";
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+      const jumpToProduct = () => {
+        let target = document.getElementById(productHash);
+        // 兼容旧链接：#product-jc-722 默认回到完整产品目录。
+        if (!target && /^product-/i.test(productHash)) {
+          target = document.getElementById(productHash.replace(/^product-/i, "catalog-product-"));
+        }
+        if (target) {
+          target.scrollIntoView({ behavior: "auto", block: "center", inline: "nearest" });
+        } else {
+          const y = Number(sessionStorage.getItem("returnScrollY") || 0);
+          if (y) window.scrollTo({ top: y, behavior: "auto" });
+        }
+        setTimeout(() => { html.style.scrollBehavior = oldInlineBehavior; }, 120);
+      };
+
+      // 等产品列表渲染完成后立即定位，不做平滑滚动动画。
+      requestAnimationFrame(() => requestAnimationFrame(jumpToProduct));
+    }
+
     function getMessage(product) {
       if (product) return t("productMsgPrefix") + productName(product) + t("productMsgSuffix");
       return t("defaultMsg");
@@ -1057,13 +1112,15 @@
       }
     }
 
-    function productCard(product) {
+    function productCard(product, sourceSection = "catalog") {
+      const safeSource = sourceSection === "featured" ? "featured" : "catalog";
+      const cardId = `${safeSource}-product-${product.code.toLowerCase()}`;
       const playBadge = product.youtubeId 
         ? `<div class="play-icon-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>` 
         : '';
         
       return `
-        <article id="product-${product.code.toLowerCase()}" class="product-card" onclick="openModal(${product.id})" style="cursor:pointer;">
+        <article id="${cardId}" class="product-card" onclick="openProductPage(${product.id}, '${safeSource}')" style="cursor:pointer;">
           <div class="product-image">
             <img 
               src="${product.image}" 
@@ -1100,13 +1157,13 @@
         const text = [product.nameZh, product.nameEn, product.code, product.descZh, product.descEn].join(" ").toLowerCase();
         return matchCategory && (!keyword || text.includes(keyword));
       });
-      productGrid.innerHTML = filtered.map(productCard).join("");
+      productGrid.innerHTML = filtered.map(product => productCard(product, "catalog")).join("");
       emptyState.style.display = filtered.length ? "none" : "block";
     }
 
     function renderFeatured() {
       const featured = featuredOrder.map(id => products.find(p => p.id === id)).filter(Boolean);
-      featuredGrid.innerHTML = featured.map(productCard).join("");
+      featuredGrid.innerHTML = featured.map(product => productCard(product, "featured")).join("");
     }
 
     function setCategory(category) { activeCategory = category; renderTabs(); renderProducts(); }
@@ -1216,12 +1273,13 @@
 
     const savedLang = localStorage.getItem("siteLang") || "zh";
     setLanguage(savedLang);
+    restoreProductScroll();
 
     // =========================================================
     // SEO 结构化数据：帮助搜索引擎识别公司、联系方式和产品目录
     // =========================================================
     function injectStructuredData() {
-      const siteUrl = "https://tulips.cc.cd/";
+      const siteUrl = "https://www.tulips.cc.cd/";
       const organizationSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
@@ -1262,7 +1320,7 @@
             "category": categoryLabel(p.category),
             "image": siteUrl + p.image,
             "description": `${p.descEn} ${p.descZh}`,
-            "url": `${siteUrl}#product-${p.code.toLowerCase()}`
+            "url": `${siteUrl}products/${productSlug(p)}.html`
           }
         }))
       };
